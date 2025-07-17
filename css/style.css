@@ -198,25 +198,20 @@ footer {
 .portfolio-item {
   width: 250px;
   height: 250px;
-  overflow: hidden;
+  background-color: #fff;
   border-radius: 12px;
-  background-color: #fff; /* Ensures background is uniform */
-  border: 1px solid #ddd; /* Light border for consistency */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .portfolio-item img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* Previously "cover" */
+  object-fit: contain;
   transition: transform 0.3s ease;
-}
-
-.portfolio-item img:hover {
-  transform: scale(1.05);
 }
 
 .portfolio-item img:hover {
