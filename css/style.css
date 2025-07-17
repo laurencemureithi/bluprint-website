@@ -1,0 +1,138 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #003366; /* Royal Blue */
+  padding: 20px;
+  color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 15px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ffd700; /* Gold */
+}
+
+/* HERO SECTION */
+.hero {
+  background-color: #f0f8ff;
+  text-align: center;
+  padding: 80px 20px;
+  color: #003366;
+}
+
+.hero h2 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 25px;
+}
+
+.cta-button {
+  padding: 12px 25px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cta-button:hover {
+  background-color: #ffd700;
+  color: #003366;
+}
+
+/* ABOUT & SERVICES */
+.about, .services {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.services ul {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.services li {
+  padding: 10px 0;
+  font-size: 1.1em;
+}
+
+/* CONTACTS */
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact input,
+.contact textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.contact button {
+  background-color: #00509E;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.contact button:hover {
+  background-color: #003f7f;
+}
+
+/* FOOTER */
+footer {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9em;
+  margin-top: 40px;
+}
