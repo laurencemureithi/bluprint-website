@@ -17,25 +17,28 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #003366; /* Royal Blue */
+  background-color: #003366;
   padding: 20px;
   color: white;
+  flex-wrap: wrap;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .logo img {
   height: 50px;
-  margin-right: 15px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 10px;
 }
 
 nav a {
@@ -45,7 +48,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #ffd700; /* Gold */
+  color: #ffd700;
 }
 
 /* HERO SECTION */
@@ -74,6 +77,7 @@ nav a:hover {
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+  display: inline-block;
 }
 
 .cta-button:hover {
@@ -81,8 +85,8 @@ nav a:hover {
   color: #003366;
 }
 
-/* ABOUT & SERVICES */
-.about, .services {
+/* SECTIONS */
+.about, .services, .contact {
   padding: 60px 20px;
   text-align: center;
 }
@@ -97,17 +101,20 @@ nav a:hover {
   font-size: 1.1em;
 }
 
-/* CONTACTS */
+/* CONTACT */
 .contact form {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
   margin-top: 20px;
+  padding: 0 20px;
 }
 
 .contact input,
 .contact textarea {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
@@ -135,4 +142,30 @@ footer {
   padding: 15px;
   font-size: 0.9em;
   margin-top: 40px;
+}
+
+/* MEDIA QUERY FOR SMALL SCREENS */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .hero h2 {
+    font-size: 2em;
+  }
+
+  .hero p {
+    font-size: 1em;
+  }
+
+  .cta-button {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
 }
