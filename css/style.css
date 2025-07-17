@@ -229,3 +229,10 @@ footer {
   transform: scale(1.03);
   cursor: pointer;
 }
+
+.portfolio-item p {
+  text-align: center;
+  font-size: 14px;
+  color: #444;
+  margin-top: 6px;
+}
