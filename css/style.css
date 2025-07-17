@@ -215,3 +215,32 @@ footer {
   transform: scale(1.05);
 }
 
+.masonry-grid {
+  column-count: 3;
+  column-gap: 20px;
+  padding: 30px 0;
+}
+
+.masonry-grid a {
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 100%;
+  transition: transform 0.3s ease;
+  break-inside: avoid;
+}
+
+.masonry-grid img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.masonry-grid a:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .masonry-grid {
+    column-count: 1;
+  }
+}
