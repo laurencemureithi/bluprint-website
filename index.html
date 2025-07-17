@@ -43,24 +43,25 @@
     </ul>
   </section>
 
-<section class="contact">
+<section class="contact" id="contact">
   <div class="container">
     <h2>Contact Us</h2>
     <p>Ready to get started or ask a question? Send us a message.</p>
     <form action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
-      <!-- HONEYPOT (Spam Protection) -->
+      <!-- Honeypot for spam prevention -->
       <input type="text" name="_honey" style="display:none">
 
-      <!-- Disable Captcha -->
+      <!-- Disable CAPTCHA -->
       <input type="hidden" name="_captcha" value="false">
 
-      <!-- Redirect after submit -->
-      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+      <!-- Redirect to thank-you page -->
+      <input type="hidden" name="_next" value="https://laurencemureithi.github.io/bluprint-website/thank-you.html">
 
-      <!-- Form Fields -->
+      <!-- Form fields -->
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <textarea name="message" placeholder="Your Message..." required></textarea>
+
       <button type="submit">Send Message</button>
     </form>
   </div>
