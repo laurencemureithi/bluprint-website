@@ -187,30 +187,6 @@ footer {
   color: #555;
 }
 
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-  padding: 0 20px;
-}
-
-.portfolio-item {
-  aspect-ratio: 1 / 1;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  position: relative;
-}
-
-.portfolio-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
 .portfolio-item img:hover {
   transform: scale(1.05);
 }
