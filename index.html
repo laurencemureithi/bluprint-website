@@ -17,69 +17,58 @@
       <img src="images/bluprint-logo.png" alt="Bluprint Logo" />
       <h1>Bluprint Graphics & Printers</h1>
     </div>
-    <nav>
+    <nav aria-label="Main Navigation">
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class="hero">
-    <h2>Professional & Stunning Designs</h2>
-    <p>Serving Athi River & Beyond — Logos, Flyers, Banners, and more!</p>
-    <a href="#contact" class="cta-button">Get Your First Design Free</a>
-  </section>
+  <main>
+    <section class="hero">
+      <h2>Professional & Stunning Designs</h2>
+      <p>Serving Athi River & Beyond — Logos, Flyers, Banners, and more!</p>
+      <a href="#contact" class="cta-button">Get Your First Design Free</a>
+    </section>
 
-  <section class="about">
-    <h2>About Us</h2>
-    <p>Bluprint Graphics & Printers is your go-to hub for modern, creative, and affordable graphic designs in Athi River. Whether you're a business or individual, our mission is to make you look amazing.</p>
-  </section>
+    <section id="about" class="about">
+      <h2>About Us</h2>
+      <p>Bluprint Graphics & Printers is your go-to hub for modern, creative, and affordable graphic designs in Athi River. Whether you're a business or individual, our mission is to make you look amazing.</p>
+    </section>
 
-  <section class="services">
-    <h2>What We Offer</h2>
-    <ul>
-      <li>Logo Design</li>
-      <li>Flyers & Posters</li>
-      <li>Business Cards</li>
-      <li>Social Media Ads</li>
-    </ul>
-  </section>
+    <section id="services" class="services">
+      <h2>What We Offer</h2>
+      <ul>
+        <li>Logo Design</li>
+        <li>Flyers & Posters</li>
+        <li>Business Cards</li>
+        <li>Social Media Ads</li>
+      </ul>
+    </section>
 
-<!-- ✅ CONTACT SECTION -->
-<section id="contact" class="contact">
-  <div class="container">
-    <!-- Section Heading -->
-    <h2>Contact Us</h2>
-    <p>Ready to get started or ask a question? Send us a message.</p>
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>Ready to get started or ask a question? Send us a message.</p>
 
-    <!-- Form begins -->
-    <form action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
+        <form action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
+          <input type="text" name="_honey" style="display: none;">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://laurencemureithi.github.io/bluprint-website/thank-you.html">
+          <input type="hidden" name="_subject" value="New Inquiry from Bluprint Website">
 
-      <!-- ✅ Anti-spam honeypot field (hidden) -->
-      <input type="text" name="_honey" style="display: none;">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message..." rows="6" required></textarea>
 
-      <!-- ✅ Disable CAPTCHA (optional) -->
-      <input type="hidden" name="_captcha" value="false">
-
-      <!-- ✅ Redirect to thank-you page after submission -->
-      <input type="hidden" name="_next" value="https://laurencemureithi.github.io/bluprint-website/thank-you.html">
-
-      <!-- ✅ Optional: Email subject for inbox clarity -->
-      <input type="hidden" name="_subject" value="New Inquiry from Bluprint Website">
-
-      <!-- ✅ User Inputs -->
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message..." required></textarea>
-
-      <!-- ✅ Submit Button -->
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
-</section>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <p>© 2025 Bluprint Graphics & Printers. All Rights Reserved.</p>
