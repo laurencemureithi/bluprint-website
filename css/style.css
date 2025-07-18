@@ -30,7 +30,13 @@ header {
 }
 
 .logo img {
-  height: 50px;
+  height: 48px;          /* keep it about the same size */
+  width:  48px;          /* make it square so border‑radius is perfect */
+  border-radius: 50%;    /* <- makes it a circle */
+  background: #ffffff;   /* white backdrop so logo pops on dark blue bar */
+  padding: 4px;          /* little breathing room inside the circle */
+  object-fit: contain;   /* keeps the logo’s proportions */
+  box-shadow: 0 0 4px rgba(0,0,0,0.15);  /* (optional) soft edge for polish */
 }
 
 nav ul {
