@@ -341,3 +341,29 @@ footer {
   color: #00aa55;
   font-size: 1.1em;
 }
+
+.social-links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.social-links p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
