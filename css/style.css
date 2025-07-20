@@ -492,3 +492,32 @@ footer {
   }
 }
 
+img {
+  pointer-events: none;
+  user-select: none;
+}
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+}
+
+.image-wrapper .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  background: transparent;
+  z-index: 10;
+}
+
+.portfolio-note {
+  font-size: 0.9rem;
+  color: #999;
+  text-align: center;
+  margin-top: 20px;
+}
