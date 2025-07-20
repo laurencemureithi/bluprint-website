@@ -390,7 +390,7 @@ footer {
 nav ul {
   display: flex;
   flex-direction: row;
-  justify-content: space-between; /* even spacing from edge to edge */
+  justify-content: space-around; /* even spacing from edge to edge */
   align-items: center;
   flex-wrap: wrap;
   gap: 0; /* optional, if you want spacing between wrapped lines */
