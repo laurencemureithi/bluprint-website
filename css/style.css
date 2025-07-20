@@ -377,28 +377,28 @@ footer {
 /* === MOBILE HEADER FIX === */
 @media (max-width: 768px) {
   header {
-    padding: 10px 15px;
     flex-direction: column;
     align-items: center;
+    padding: 10px 20px;
   }
 
   .logo {
-    justify-content: center;
     margin-bottom: 10px;
   }
 
   nav {
     width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   nav ul {
     display: flex;
-    flex-direction: row;
-    justify-content: center; /* Center the whole nav block */
-    align-items: center;
-    gap: 30px; /* Adjust gap as needed */
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px; /* control the width of the nav group */
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
     list-style: none;
   }
 
@@ -409,6 +409,6 @@ footer {
   nav ul li a {
     font-size: 1rem;
     padding: 6px 10px;
+    text-align: center;
   }
 }
-
