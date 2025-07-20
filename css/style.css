@@ -379,7 +379,7 @@ footer {
   header {
     padding: 10px 15px;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
     header img {
