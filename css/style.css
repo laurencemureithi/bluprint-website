@@ -402,9 +402,13 @@ footer {
   }
 
   .logo img {
-    width: 60px; /* Adjust to prevent tiny logo */
-    height: auto;
-    border-radius: 50%;
+  width: 60px;
+  height: 60px;        /* ✅ fixed height makes it perfectly round */
+  border-radius: 50%;
+  object-fit: cover;   /* ✅ crops/fits image inside the circle */
+  padding: 4px;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
   }
 
   .logo h1 {
