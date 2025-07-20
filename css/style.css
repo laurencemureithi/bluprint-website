@@ -382,6 +382,17 @@ footer {
     align-items: center;
   }
 
+    header img {
+    width: 50px; /* slightly larger logo on mobile */
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  header h1 {
+    font-size: 1.4rem; /* smaller text for brand name */
+    line-height: 1.2;
+  }
+
   .logo {
     display: flex;
     align-items: center;
