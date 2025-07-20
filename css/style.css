@@ -379,7 +379,7 @@ footer {
   header {
     padding: 10px 15px;
     flex-direction: column;
-    align-items: center; /* center everything including nav */
+    align-items: center;
   }
 
   .logo {
@@ -387,19 +387,18 @@ footer {
     margin-bottom: 10px;
   }
 
-nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around; /* even spacing from edge to edge */
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0; /* optional, if you want spacing between wrapped lines */
-  width: 100%; /* ensures nav takes full width */
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; /* ✅ changed from space-around */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
 
   nav ul li {
     display: inline-block;
@@ -410,4 +409,5 @@ nav ul {
     padding: 6px 10px;
   }
 }
+
 
