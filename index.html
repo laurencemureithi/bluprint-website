@@ -395,5 +395,24 @@
   }
 </script>
 
+<script>
+  // Toggle extra service info
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
+    });
+  });
+
+  // Handle quote modal
+  const modal = document.getElementById('quoteModal');
+  const openBtn = document.getElementById('quoteButton');
+  const closeBtn = document.getElementById('closeModal');
+
+  openBtn.onclick = () => modal.style.display = 'flex';
+  closeBtn.onclick = () => modal.style.display = 'none';
+  window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
+</script>
+
+
 </body>
 </html>
