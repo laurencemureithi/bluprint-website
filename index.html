@@ -427,6 +427,21 @@
   document.addEventListener('contextmenu', event => event.preventDefault());
   document.addEventListener('dragstart', event => event.preventDefault());
 </script>
+<script>
+  function toggleDetails(element) {
+    const details = element.nextElementSibling;
+    // Toggle the display property of the service details
+    if (details.style.display === "block") {
+      details.style.display = "none";
+    } else {
+      // Optionally, close all other service details first:
+      document.querySelectorAll('.service-details').forEach(function(detail) {
+        detail.style.display = 'none';
+      });
+      details.style.display = "block";
+    }
+  }
+</script>
 
 </body>
 </html>
