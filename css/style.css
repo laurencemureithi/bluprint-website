@@ -736,3 +736,82 @@ img {
   background: #005fa3;
 }
 
+/* Toggle arrow & card */
+.service-card {
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+.service-card::after {
+  content: "▶";
+  position: absolute;
+  right: 16px;
+  top: 20px;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+.service-card.active::after {
+  content: "▼";
+}
+.service-details {
+  display: none;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  color: #333;
+}
+.service-card.active .service-details {
+  display: block;
+}
+.service-card.active {
+  border-left: 4px solid #0077cc;
+  background-color: #f9f9f9;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal-content {
+  background: #fff;
+  max-width: 400px;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+.close-button {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal-content input, .modal-content select, .modal-content textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+.submit-quote {
+  background-color: #0077cc;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.submit-quote:hover {
+  background-color: #005fa3;
+}
