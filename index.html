@@ -278,7 +278,7 @@
       <label for="message">Additional Details:</label>
       <textarea id="message" name="Message" placeholder="Any extra info or requirements..." rows="4"></textarea>
 
-      <!-- Hide this field to prevent spam -->
+      <!-- Hidden anti-spam + formatting -->
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
 
@@ -502,7 +502,7 @@
 </script>
 
 <script>
-  // Toggle Service Details
+  // Expand service details
   const serviceCards = document.querySelectorAll('.service-card');
   serviceCards.forEach(card => {
     card.addEventListener('click', () => {
@@ -511,15 +511,19 @@
   });
 
   // Modal logic
-  const quoteButtons = document.querySelectorAll('.request-quote');
   const modal = document.getElementById('quoteModal');
   const closeModal = document.getElementById('closeModal');
 
-  quoteButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
+  // Attach to dynamically created buttons inside service cards
+  document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('request-quote')) {
       e.stopPropagation();
       modal.style.display = 'block';
-    });
+
+      // Optional: auto-select the service name in dropdown
+      const serviceName = e.target.closest('.service-card').querySelector('h3').innerText;
+      document.getElementById('service').value = serviceName;
+    }
   });
 
   closeModal.addEventListener('click', () => {
