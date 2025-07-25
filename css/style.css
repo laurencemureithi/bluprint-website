@@ -760,6 +760,31 @@ img {
   margin-top: 10px;
   color: #333;
 }
+
+.request-quote {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.request-quote:hover {
+  background-color: #005fa3;
+  transform: scale(1.03);
+}
+
+.request-quote:active {
+  transform: scale(0.97);
+}
+
+
 .service-card.active .service-details {
   display: block;
 }
