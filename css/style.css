@@ -665,22 +665,25 @@ img {
   z-index: 999;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0,0,0,0.6);
+  overflow: hidden;
 }
 
 .modal-content {
   background-color: #fff;
-  margin: auto;
   padding: 30px;
   border-radius: 10px;
   max-width: 500px;
   width: 90%;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
   position: relative;
-  animation: fadeIn 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .modal-content h3 {
