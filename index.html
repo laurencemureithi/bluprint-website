@@ -502,7 +502,7 @@
 </script>
 
 <script>
-  // Expand service details
+  // Expand/collapse service details
   const serviceCards = document.querySelectorAll('.service-card');
   serviceCards.forEach(card => {
     card.addEventListener('click', () => {
@@ -510,26 +510,34 @@
     });
   });
 
-  // Modal logic
+  // Modal elements
   const modal = document.getElementById('quoteModal');
   const closeModal = document.getElementById('closeModal');
+  const serviceDropdown = document.getElementById('service');
 
-  // Attach to dynamically created buttons inside service cards
+  // Use event delegation to capture clicks on dynamically created quote buttons
   document.addEventListener('click', function (e) {
     if (e.target && e.target.classList.contains('request-quote')) {
-      e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation(); // prevent parent service-card from toggling
+
+      const card = e.target.closest('.service-card');
+      const serviceTitle = card.querySelector('h3').innerText;
+
+      // Open the modal
       modal.style.display = 'block';
 
-      // Optional: auto-select the service name in dropdown
-      const serviceName = e.target.closest('.service-card').querySelector('h3').innerText;
-      document.getElementById('service').value = serviceName;
+      // Pre-fill the service dropdown with the clicked service
+      serviceDropdown.value = serviceTitle;
     }
   });
 
+  // Close modal when clicking the X
   closeModal.addEventListener('click', () => {
     modal.style.display = 'none';
   });
 
+  // Close modal when clicking outside
   window.addEventListener('click', (e) => {
     if (e.target === modal) {
       modal.style.display = 'none';
