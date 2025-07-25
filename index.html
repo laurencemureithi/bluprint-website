@@ -254,15 +254,7 @@
     <h3>Request a Custom Quote</h3>
     <form action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
       <label for="service">Service:</label>
-      <select id="service" name="Service" required>
-        <option value="">-- Select Service --</option>
-        <option>Logo Design</option>
-        <option>Flyer & Poster Design</option>
-        <option>Business Card Design</option>
-        <option>Brand Identity Package</option>
-        <option>Event Invitations</option>
-        <option>Sticker & Label Design</option>
-      </select>
+      <input type="text" id="service" name="Service" readonly required />
 
       <label for="package">Package/Specs:</label>
       <input type="text" id="package" name="Package/Specs" placeholder="e.g. Premium Logo, 3 revisions" required>
@@ -278,7 +270,6 @@
       <label for="message">Additional Details:</label>
       <textarea id="message" name="Message" placeholder="Any extra info or requirements..." rows="4"></textarea>
 
-      <!-- Hidden anti-spam + formatting -->
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
 
@@ -484,22 +475,45 @@
 </script>
 
 <script>
-  // Toggle extra service info
+  // Expand/collapse service cards
   document.querySelectorAll('.service-card').forEach(card => {
     card.addEventListener('click', () => {
-      card.classList.toggle('open');
+      card.classList.toggle('active');
     });
   });
 
-  // Handle quote modal
+  // Quote modal logic
   const modal = document.getElementById('quoteModal');
-  const openBtn = document.getElementById('quoteButton');
-  const closeBtn = document.getElementById('closeModal');
+  const closeModal = document.getElementById('closeModal');
+  const serviceInput = document.getElementById('service');
 
-  openBtn.onclick = () => modal.style.display = 'flex';
-  closeBtn.onclick = () => modal.style.display = 'none';
-  window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
+  // Handle clicks on Request Quote buttons
+  document.querySelectorAll('.request-quote').forEach(button => {
+    button.addEventListener('click', function(event) {
+      event.stopPropagation(); // prevent parent toggle
+      event.preventDefault();
+
+      // Fill the service input
+      const selectedService = button.getAttribute('data-service');
+      serviceInput.value = selectedService;
+
+      // Show the modal
+      modal.style.display = 'block';
+    });
+  });
+
+  // Close modal logic
+  closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
 </script>
+
 
 <script>
   // Expand/collapse service details
