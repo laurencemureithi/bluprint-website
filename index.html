@@ -253,6 +253,13 @@
     <span class="close-button" id="closeModal">&times;</span>
     <h3>Request a Custom Quote</h3>
     <form action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
+      <label for="phone">Phone Number (required):</label>
+      <input type="tel" id="phone" name="phone" placeholder="e.g. 0712345678" required pattern="^(\+?\d{9,13})$" />
+
+      <label for="email">Email (optional):</label>
+      <input type="email" id="email" name="email" placeholder="example@email.com" />
+
+      
       <label for="service">Service:</label>
       <input type="text" id="service" name="Service" readonly required />
 
