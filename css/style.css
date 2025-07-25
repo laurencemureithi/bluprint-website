@@ -702,6 +702,17 @@ img {
   font-family: inherit;
 }
 
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
 .modal-content button {
   background: #0077cc;
   color: white;
