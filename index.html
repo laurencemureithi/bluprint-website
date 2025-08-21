@@ -1,563 +1,194 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bluprint Graphics & Printers</title>
-  <link rel="icon" type="image/png" href="images/favicon.png" />
-  <link rel="stylesheet" href="css/style.css" />
-  <!-- Lightbox2 CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Award-winning graphic design & branding • Bluprint Studio</title>
+<meta name="description" content="A premium, responsive portfolio for a design studio with case studies, services, and contact.">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.json">
+<meta property="og:title" content="Award-winning graphic design & branding • Bluprint Studio">
+<meta property="og:description" content="A premium, responsive portfolio for a design studio with case studies, services, and contact.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/assets/logo.svg">
+<meta name="theme-color" content="#0b0b10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="images/BP-icon.jpg" alt="Bluprint Logo" />
-      <h1>Bluprint Graphics & Printers</h1>
-    </div>
-    <nav aria-label="Main Navigation">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="/"><img src="/assets/logo.svg" alt="Bluprint Studio logo"><span class="name">Bluprint Studio</span></a>
+    <nav class="nav-links" data-menu>
+      <a href="/work.html">Work</a>
+      <a href="/services.html">Services</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <div class="toggle" aria-label="Theme">
+        <button data-theme="dark" class="active" aria-label="Dark">Dark</button>
+        <button data-theme="light" aria-label="Light">Light</button>
+      </div>
+      <a class="cta" href="/contact.html">Start a Project</a>
     </nav>
-  </header>
+    <button class="cta" data-nav aria-label="Toggle Menu" style="display:none">Menu</button>
+  </div>
+</header>
 
-  <main>
-    <section class="hero">
-      <h2>Professional & Stunning Designs</h2>
-      <p>Logos, Flyers, Banners, and more!</p>
-      <a href="#contact" class="cta-button">Get Your First Design</a>
-    </section>
-
-    <section id="about" class="about">
-      <h2>About Us</h2>
-      <p>Bluprint Graphics & Printers is your go-to hub for modern, creative, and affordable graphic designs. Whether you're a business or individual, our mission is to make you look amazing.</p>
-    </section>
-
-<section id="lead-designer" class="about-section">
-  <div class="designer-container">
-    <div class="designer-image">
-      <img src="images/lead-designer.jpg" alt="Laurence Mureithi - Lead Designer" />
+<section class="hero">
+  <div class="container">
+    <span class="kicker">Design that moves markets</span>
+    <h1 class="h1">World‑class <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">brand & graphic design</span> for bold companies.</h1>
+    <p class="sub">We craft identities, campaigns, and digital assets that look stunning and ship fast. Built with performance, accessibility, and polish that justify a 200,000+ KES budget.</p>
+    <div class="hero-cta">
+      <a class="cta" href="/work.html">See our Work</a>
+      <a class="pill" href="/services.html">What we do →</a>
     </div>
-    <div class="designer-content">
-      <h2>Meet the Lead Designer</h2>
-      <p>Hi! I'm <strong>Laurence</strong>, the creative mind behind Bluprint Graphics and Printers. With years of hands-on experience in digital and print design, I bring every project to life with precision, passion, and a deep understanding of client needs.</p>
-      <p>I specialize in crafting stunning visuals — from logos and business cards to large format banners — ensuring your brand communicates powerfully and clearly.</p>
-      <p>At Bluprint, every design is more than just art — it's strategy, creativity, and your vision turned into visual reality. I'm here to work with you, not just for you.</p>
+    <div class="badge-row">
+      <span class="badge">AAA Accessibility</span>
+      <span class="badge">SEO‑ready</span>
+      <span class="badge">PWA Offline</span>
+      <span class="badge">Lightning Performance</span>
     </div>
   </div>
 </section>
 
-<section id="services">
-  <h2>Our Services</h2>
-  <div class="services-container">
-    
-    <!-- Service Card: Logo Design -->
-    <div class="service-card">
-      <div class="service-header" onclick="toggleDetails(this)">
-        <h3>Logo Design</h3>
-        <p>Unique, professional logos tailored to reflect your brand’s identity and style.</p>
-        <span class="price">From KES 2,500</span>
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <div>
+        <div class="kicker">Featured</div>
+        <h2 class="h2">Recent case studies</h2>
       </div>
-      <div class="service-details">
-        <table>
-          <tr>
-            <th>Package</th>
-            <th>Price</th>
-            <th>Delivery</th>
-          </tr>
-          <tr>
-            <td>Basic</td>
-            <td>KES 2,500</td>
-            <td>2 days</td>
-          </tr>
-          <tr>
-            <td>Standard</td>
-            <td>KES 4,000</td>
-            <td>3 days</td>
-          </tr>
-          <tr>
-            <td>Premium</td>
-            <td>KES 6,000</td>
-            <td>5 days</td>
-          </tr>
-        </table>
-        <button class="request-quote" data-service="Logo Design">Request a Custom Quote</button>
-      </div>
+      <a class="pill" href="/work.html">All projects</a>
     </div>
-    
-    <!-- Service Card: Flyer & Poster Design -->
-    <div class="service-card">
-      <div class="service-header" onclick="toggleDetails(this)">
-        <h3>Flyer & Poster Design</h3>
-        <p>Creative, print-ready flyers and posters for events, businesses, or promotions.</p>
-        <span class="price">From KES 1,500</span>
-      </div>
-      <div class="service-details">
-        <table>
-          <tr>
-            <th>Package</th>
-            <th>Price</th>
-            <th>Delivery</th>
-          </tr>
-          <tr>
-            <td>Single-Sided</td>
-            <td>KES 1,500</td>
-            <td>1-2 days</td>
-          </tr>
-          <tr>
-            <td>Double-Sided</td>
-            <td>KES 2,000</td>
-            <td>2-3 days</td>
-          </tr>
-          <tr>
-            <td>Bulk (5+)</td>
-            <td>KES 6,000</td>
-            <td>5 days</td>
-          </tr>
-        </table>
-        <button class="request-quote" data-service="Flyer & Poster Design">Request a Custom Quote</button>
-      </div>
+    <div class="grid grid-3">
+      <article class="card case" data-cat="brand">
+        <span class="tag">Identity</span>
+        <img src="/assets/pattern.svg" alt="Case study: NeoPay identity">
+        <h3 class="title">NeoPay brand overhaul</h3>
+        <p class="desc">A fintech visual language with motion system, 72% lift in recognition.</p>
+      </article>
+      <article class="card case" data-cat="campaign">
+        <span class="tag">Campaign</span>
+        <img src="/assets/pattern.svg" alt="Case study: Agro360 campaign">
+        <h3 class="title">Agro360 product launch</h3>
+        <p class="desc">Outdoor & social roll‑out across 5 cities, CTR up 2.1×.</p>
+      </article>
+      <article class="card case" data-cat="packaging">
+        <span class="tag">Packaging</span>
+        <img src="/assets/pattern.svg" alt="Case study: Soko Tea packaging">
+        <h3 class="title">Soko Tea series</h3>
+        <p class="desc">Shelf‑popping FMCG line with sustainable substrates.</p>
+      </article>
     </div>
-    
-    <!-- Service Card: Business Card Design -->
-    <div class="service-card">
-      <div class="service-header" onclick="toggleDetails(this)">
-        <h3>Business Card Design</h3>
-        <p>Eye-catching business cards that leave a professional and memorable impression.</p>
-        <span class="price">From KES 1,000</span>
-      </div>
-      <div class="service-details">
-        <table>
-          <tr>
-            <th>Package</th>
-            <th>Price</th>
-            <th>Delivery</th>
-          </tr>
-          <tr>
-            <td>Standard</td>
-            <td>KES 1,000</td>
-            <td>1 day</td>
-          </tr>
-          <tr>
-            <td>Premium</td>
-            <td>KES 1,500</td>
-            <td>2 days</td>
-          </tr>
-        </table>
-        <button class="request-quote" data-service="Business Card Design">Request a Custom Quote</button>
-      </div>
-    </div>
-    
-    <!-- Service Card: Brand Identity Package -->
-    <div class="service-card">
-      <div class="service-header" onclick="toggleDetails(this)">
-        <h3>Brand Identity Package</h3>
-        <p>Complete branding including logo, letterhead, business card & more.</p>
-        <span class="price">From KES 5,000</span>
-      </div>
-      <div class="service-details">
-        <table>
-          <tr>
-            <th>Package</th>
-            <th>Price</th>
-            <th>Delivery</th>
-          </tr>
-          <tr>
-            <td>Basic</td>
-            <td>KES 5,000</td>
-            <td>4 days</td>
-          </tr>
-          <tr>
-            <td>Advanced</td>
-            <td>KES 8,000</td>
-            <td>6 days</td>
-          </tr>
-        </table>
-        <button class="request-quote" data-service="Brand Identity Package">Request a Custom Quote</button>
-      </div>
-    </div>
-    
-    <!-- Service Card: Event Invitations -->
-    <div class="service-card">
-      <div class="service-header" onclick="toggleDetails(this)">
-        <h3>Event Invitations</h3>
-        <p>Stylish digital or print invitation designs for birthdays, weddings, and special occasions.</p>
-        <span class="price">From KES 1,000</span>
-      </div>
-      <div class="service-details">
-        <table>
-          <tr>
-            <th>Package</th>
-            <th>Price</th>
-            <th>Delivery</th>
-          </tr>
-          <tr>
-            <td>Digital</td>
-            <td>KES 1,000</td>
-            <td>1 day</td>
-          </tr>
-          <tr>
-            <td>Print-Ready</td>
-            <td>KES 1,500</td>
-            <td>2 days</td>
-          </tr>
-        </table>
-        <button class="request-quote" data-service="Event Invitations">Request a Custom Quote</button>
-      </div>
-    </div>
-    
-    <!-- Service Card: Sticker & Label Design -->
-    <div class="service-card">
-      <div class="service-header" onclick="toggleDetails(this)">
-        <h3>Sticker & Label Design</h3>
-        <p>Product labels and promotional stickers designed to stand out and communicate clearly.</p>
-        <span class="price">From KES 1,200</span>
-      </div>
-      <div class="service-details">
-        <table>
-          <tr>
-            <th>Package</th>
-            <th>Price</th>
-            <th>Delivery</th>
-          </tr>
-          <tr>
-            <td>Standard</td>
-            <td>KES 1,200</td>
-            <td>1 day</td>
-          </tr>
-          <tr>
-            <td>Custom</td>
-            <td>Contact us</td>
-            <td>Varies</td>
-          </tr>
-        </table>
-        <button class="request-quote" data-service="Sticker & Label Design">Request a Custom Quote</button>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- Modal Quote Form -->
-<div class="modal" id="quoteModal">
-  <div class="modal-content">
-    <span class="close-button" id="closeModal">&times;</span>
-    <h3>Request a Custom Quote</h3>
-    <form action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
-      <label for="phone">Phone Number (required):</label>
-      <input type="tel" id="phone" name="phone" placeholder="e.g. 0712345678" required pattern="^(\+?\d{9,13})$" />
+<section class="section-tight">
+  <div class="container">
+    <div class="marquee" aria-label="Client list">
+      <span class="pill">Safaricom</span>
+      <span class="pill">Equity Group</span>
+      <span class="pill">Twiga</span>
+      <span class="pill">Bambu</span>
+      <span class="pill">M-KOPA</span>
+      <span class="pill">ABSA</span>
+      <span class="pill">KCB</span>
+    </div>
+  </div>
+</section>
 
-      <label for="email">Email (optional):</label>
-      <input type="email" id="email" name="email" placeholder="example@email.com" />
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+      <div>
+        <div class="kicker">Investment</div>
+        <h2 class="h2">Transparent pricing</h2>
+      </div>
+      <span class="lead">Fixed scopes. Senior quality.</span>
+    </div>
+    <div class="pricing">
+      <div class="card price-card">
+        <div class="tag">Most popular</div>
+        <h3 class="title">Brand Sprint</h3>
+        <p class="sub">Visual identity essentials in 10–15 days.</p>
+        <div class="price">KSh 220,000</div>
+        <ul class="clean" style="margin:1rem 0">
+          <li><span class="check"></span>Logo suite & usage</li>
+          <li><span class="check"></span>Colors, type, grid</li>
+          <li><span class="check"></span>Mini guidelines PDF</li>
+          <li><span class="check"></span>Social kit</li>
+        </ul>
+        <a class="cta" href="/contact.html">Start</a>
+      </div>
+      <div class="card price-card">
+        <h3 class="title">Campaign Kit</h3>
+        <p class="sub">Go‑to‑market visuals and templates.</p>
+        <div class="price">KSh 180,000</div>
+        <ul class="clean" style="margin:1rem 0">
+          <li><span class="check"></span>Key visuals (3)</li>
+          <li><span class="check"></span>Static + motion</li>
+          <li><span class="check"></span>OOH & digital sizes</li>
+          <li><span class="check"></span>Source files</li>
+        </ul>
+        <a class="cta" href="/contact.html">Enquire</a>
+      </div>
+      <div class="card price-card">
+        <h3 class="title">Packaging Lab</h3>
+        <p class="sub">Shelf‑ready, print‑perfect packaging.</p>
+        <div class="price">KSh 260,000</div>
+        <ul class="clean" style="margin:1rem 0">
+          <li><span class="check"></span>3 SKUs</li>
+          <li><span class="check"></span>Die‑lines & mockups</li>
+          <li><span class="check"></span>Printer liaison</li>
+          <li><span class="check"></span>Sustainability options</li>
+        </ul>
+        <a class="cta" href="/contact.html">Book</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-      
-      <label for="service">Service:</label>
-      <input type="text" id="service" name="Service" readonly required />
+<section class="section">
+  <div class="container grid grid-2 card">
+    <div>
+      <div class="kicker">Method</div>
+      <h2 class="h2">A tight, senior‑led process</h2>
+      <p class="sub">Discovery, moodboards, concept rounds, and delivery—each phase time‑boxed and collaborative. You get momentum without the mess.</p>
+      <ul class="clean" style="margin-top:.8rem">
+        <li><span class="check"></span>Weekly demos & Figma links</li>
+        <li><span class="check"></span>Usage rights & exports covered</li>
+        <li><span class="check"></span>Post‑launch support</li>
+      </ul>
+    </div>
+    <div class="notice">
+      <strong>Performance first.</strong>
+      <p>Images lazy‑load, CSS size is tiny, and the site ships as a PWA with offline cache for core pages.</p>
+      <p class="fine">Tip: Install to Home Screen on mobile.</p>
+    </div>
+  </div>
+</section>
 
-      <label for="package">Package/Specs:</label>
-      <input type="text" id="package" name="Package/Specs" placeholder="e.g. Premium Logo, 3 revisions" required>
-
-      <label for="timeline">Preferred Delivery Time:</label>
-      <select id="timeline" name="Delivery Time" required>
-        <option value="">-- Select --</option>
-        <option>1-2 Days</option>
-        <option>3-5 Days</option>
-        <option>1 Week</option>
-      </select>
-
-      <label for="message">Additional Details:</label>
-      <textarea id="message" name="Message" placeholder="Any extra info or requirements..." rows="4"></textarea>
-
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-
-      <button type="submit" class="submit-quote">Send Request</button>
+<footer class="footer">
+  <div class="container grid grid-3">
+    <div>
+      <div class="brand"><img src="/assets/logo.svg" alt="Bluprint Studio logo" style="height:28px"><span class="name">Bluprint Studio</span></div>
+      <p class="fine" style="margin-top:.6rem">Premium brand & graphic design for ambitious teams.</p>
+    </div>
+    <div>
+      <div class="fine">Nairobi • Remote across Africa</div>
+      <div class="fine">Mon–Fri 9am–6pm EAT</div>
+      <div class="fine" style="margin-top:.4rem"><a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></div>
+    </div>
+    <form action="https://formspree.io/f/maylzzzz" method="POST" class="grid">
+      <label class="fine">Join our newsletter</label>
+      <input class="input" type="email" name="email" placeholder="you@company.com" required>
+      <button class="cta" type="submit">Subscribe</button>
     </form>
   </div>
-</div>
-
-
-    <section class="portfolio" id="portfolio">
-  <div class="container">
-    <h2>Our Work</h2>
-    <p>Check out some of the designs we've created for our happy clients.</p>
-
-<div class="masonry-grid">
-  <div class="image-wrapper">
-    <a href="images/namanga.jpg" data-lightbox="portfolio" data-title="Namanga School Logo">
-      <img src="images/namanga.jpg" alt="Namanga School Logo">
-      <div class="overlay"></div>
-      <p>Namanga School Logo</p>
-    </a>
-  </div>
-
-  <div class="image-wrapper">
-    <a href="images/wema-g.png" data-lightbox="portfolio" data-title="Wema Business Card">
-      <img src="images/wema-g.png" alt="Wema Business Card">
-      <div class="overlay"></div>
-      <p>Wema Gardens Business Card</p>
-    </a>
-  </div>
-
-  <div class="image-wrapper">
-    <a href="images/bluprint-id-flyer.jpg" data-lightbox="portfolio" data-title="Debris Flyer Cover">
-      <img src="images/bluprint-id-flyer.jpg" alt="Debris Flyer Cover">
-      <div class="overlay"></div>
-      <p>Debris Xtractors 1st Flyer Cover Design</p>
-    </a>
-  </div>
-
-  <div class="image-wrapper">
-    <a href="images/bluprint-flyer-id.jpg" data-lightbox="portfolio" data-title="Debris Flyer Initial">
-      <img src="images/bluprint-flyer-id.jpg" alt="Debris Flyer Initial Design">
-      <div class="overlay"></div>
-      <p>Debris Initial Flyer Design</p>
-    </a>
-  </div>
-
-  <div class="image-wrapper">
-    <a href="images/bluprint-id.jpg" data-lightbox="portfolio" data-title="Debris Logo White BG">
-      <img src="images/bluprint-id.jpg" alt="Debris Logo White BG">
-      <div class="overlay"></div>
-      <p>Debris Logo White Design</p>
-    </a>
-  </div>
-
-  <div class="image-wrapper">
-    <a href="images/avrek-id-logo.jpg" data-lightbox="portfolio" data-title="Avrek Logo Remodelled">
-      <img src="images/avrek-id-logo.jpg" alt="Avrek Logo Remodelled">
-      <div class="overlay"></div>
-      <p>Avrek Logo Design</p>
-    </a>
-  </div>
-
-  <div class="image-wrapper">
-    <a href="images/avrek-id-intro.jpg" data-lightbox="portfolio" data-title="Avrek Service Flyer">
-      <img src="images/avrek-id-intro.jpg" alt="Avrek Service Flyer">
-      <div class="overlay"></div>
-      <p>Avrek Offer Service Flyer</p>
-    </a>
-  </div>
-
-  <div class="image-wrapper">
-    <a href="images/bluprint-logo.jpg" data-lightbox="portfolio" data-title="Bluprint Logo">
-      <img src="images/bluprint-logo.jpg" alt="Bluprint Logo">
-      <div class="overlay"></div>
-      <p>Bluprint Logo Design</p>
-    </a>
-  </div>
-
-  <div class="image-wrapper">
-    <a href="images/premium.png" data-lightbox="portfolio" data-title="Premium Pork Sticker">
-      <img src="images/premium.png" alt="Premium Pork Sticker">
-      <div class="overlay"></div>
-      <p>Premium Pork Sticker Design</p>
-    </a>
-  </div>
-
-  <div class="image-wrapper">
-    <a href="images/kay-thrifts.jpg" data-lightbox="portfolio" data-title="Kay Thrifts">
-      <img src="images/kay-thrifts.jpg" alt="Kay Thrifts">
-      <div class="overlay"></div>
-      <p>Kay Thrifts</p>
-    </a>
-  </div>
-
-
-  <div class="image-wrapper">
-    <a href="images/thumbnail.jpg" data-lightbox="portfolio" data-title="Thumbnail">
-      <img src="images/thumbnail.jpg" alt="Thumbnail">
-      <div class="overlay"></div>
-      <p>Youtube Thumbnail</p>
-    </a>
-  </div> 
-
-  <div class="image-wrapper">
-    <a href="images/ludke.jpg" data-lightbox="portfolio" data-title="Ludke">
-      <img src="images/ludke.jpg" alt="Ludke">
-      <div class="overlay"></div>
-      <p>Ludke Transportation</p>
-    </a>
-  </div>
-</div>
-    
-<p class="portfolio-note">All designs are protected. © Bluprint Graphics & Printers. Unauthorized use is prohibited.</p>
-</section>
-
-  <section id="testimonials" class="section">
-  <h2>What Our Clients Say</h2>
-  <div class="testimonial-grid">
-    <div class="testimonial">
-      <p>"Bluprint created an amazing flyer for our event — the design was eye-catching and professional!"</p>
-      <h4>- Angela W., Event Organizer</h4>
-    </div>
-    <div class="testimonial">
-      <p>"The business cards they printed for me were top-notch quality. I recommend them 100%."</p>
-      <h4>- James K., Entrepreneur</h4>
-    </div>
-    <div class="testimonial">
-      <p>"Very reliable and quick turnaround on all my orders. Great experience every time."</p>
-      <h4>- Sarah N., Small Business Owner</h4>
-    </div>
-  </div>
-</section>
-
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2>Contact Us</h2>
-        <p>Ready to get started or ask a question? Send us a message.</p>
-
-        <form action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
-          <input type="text" name="_honey" style="display: none;">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://laurencemureithi.github.io/bluprint-website/thank-you.html">
-          <input type="hidden" name="_subject" value="New Inquiry from Bluprint Website">
-
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <textarea name="message" placeholder="Your Message..." rows="6" required></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
-
-<div class="social-links">
-  <p>Or reach us directly:</p>
-  <div class="social-icons">
-    <a href="https://wa.me/254110343757" target="_blank" aria-label="WhatsApp">
-      <img src="images/whatsappp-icon.png" alt="WhatsApp" />
-    </a>
-    <a href="https://instagram.com/bluprint.ltd?igsh=MXoxbWMyajRlaXdm" target="_blank" aria-label="Instagram">
-      <img src="images/instagramm-icon.png" alt="Instagram" />
-    </a>
-    <a href="https://facebook.com/profilr.php?id=61578401611990 target="_blank" aria-label="Facebook">
-      <img src="images/facebookk-icon.png" alt="Facebook" />
-    </a>
-  </div>
-</div>
-        
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© 2025 Bluprint Graphics & Printers. All Rights Reserved.</p>
-  </footer>
-  <!-- Lightbox2 JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-<script>
-  document.addEventListener('contextmenu', event => event.preventDefault());
-  document.addEventListener('dragstart', event => event.preventDefault());
-</script>
-<script>
-  function toggleDetails(element) {
-    const details = element.nextElementSibling;
-    // Toggle the display property of the service details
-    if (details.style.display === "block") {
-      details.style.display = "none";
-    } else {
-      // Optionally, close all other service details first:
-      document.querySelectorAll('.service-details').forEach(function(detail) {
-        detail.style.display = 'none';
-      });
-      details.style.display = "block";
-    }
-  }
-</script>
-
-<script>
-  // Expand/collapse service cards
-  document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('active');
-    });
-  });
-
-  // Quote modal logic
-  const modal = document.getElementById('quoteModal');
-  const closeModal = document.getElementById('closeModal');
-  const serviceInput = document.getElementById('service');
-
-  // Handle clicks on Request Quote buttons
-  document.querySelectorAll('.request-quote').forEach(button => {
-    button.addEventListener('click', function(event) {
-      event.stopPropagation(); // prevent parent toggle
-      event.preventDefault();
-
-      // Fill the service input
-      const selectedService = button.getAttribute('data-service');
-      serviceInput.value = selectedService;
-
-      // Show the modal
-      modal.style.display = 'block';
-    });
-  });
-
-  // Close modal logic
-  closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
-</script>
-
-
-<script>
-  // Expand/collapse service details
-  const serviceCards = document.querySelectorAll('.service-card');
-  serviceCards.forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('active');
-    });
-  });
-
-  // Modal elements
-  const modal = document.getElementById('quoteModal');
-  const closeModal = document.getElementById('closeModal');
-  const serviceDropdown = document.getElementById('service');
-
-  // Use event delegation to capture clicks on dynamically created quote buttons
-  document.addEventListener('click', function (e) {
-    if (e.target && e.target.classList.contains('request-quote')) {
-      e.preventDefault();
-      e.stopPropagation(); // prevent parent service-card from toggling
-
-      const card = e.target.closest('.service-card');
-      const serviceTitle = card.querySelector('h3').innerText;
-
-      // Open the modal
-      modal.style.display = 'block';
-
-      // Pre-fill the service dropdown with the clicked service
-      serviceDropdown.value = serviceTitle;
-    }
-  });
-
-  // Close modal when clicking the X
-  closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-
-  // Close modal when clicking outside
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
-</script>
-
+</footer>
+<script src="/assets/main.js" defer></script>
 </body>
 </html>
