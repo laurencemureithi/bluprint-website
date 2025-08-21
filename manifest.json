@@ -1,13 +1,13 @@
 {
   "name": "Bluprint Studio",
   "short_name": "Bluprint",
-  "start_url": "/",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0b0b10",
   "theme_color": "#0b0b10",
   "icons": [
     {
-      "src": "/assets/logo.svg",
+      "src": "./assets/logo.svg",
       "sizes": "192x192",
       "type": "image/svg+xml"
     }
