@@ -1,0 +1,15 @@
+{
+  "name": "Bluprint Graphics & Printers",
+  "short_name": "Bluprint",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0d14",
+  "theme_color": "#7c4dff",
+  "icons": [
+    {
+      "src": "./assets/img/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
