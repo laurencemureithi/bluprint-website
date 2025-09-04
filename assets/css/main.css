@@ -89,10 +89,48 @@ a{color:inherit}
 .gallery .work-grid{grid-template-columns:repeat(3, 1fr)}
 .gallery .work-card img{height:260px}
 
-.team-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:1rem}
-.person{display:flex; gap:1rem; background:var(--panel); border:1px solid rgba(127,127,127,.2); padding:1rem; border-radius:14px; align-items:center}
-.person img{width:96px; height:96px; object-fit:cover; border-radius:12px}
-.person .role{color:var(--muted); margin:.2rem 0 .5rem}
+/* Responsive team layout */
+.team-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+/* Card */
+.person{
+  display:flex;
+  gap:1rem;
+  background: var(--panel);
+  border: 1px solid rgba(127,127,127,.18);
+  padding: 1rem;
+  border-radius: 14px;
+  align-items: flex-start;        /* top-align content to avoid "floating" text */
+}
+
+/* Avatar — NEVER shrink or stretch */
+.person img{
+  flex: 0 0 112px;                /* lock the image column; stops the “pressed” look */
+  width:112px;
+  height:112px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Type tweaks */
+.person strong{font-size:1.05rem;}
+.person .role{color:var(--muted); margin:.2rem 0 .4rem}
+.person p{margin:.35rem 0 .5rem}
+
+/* Bulleted details for credibility without clutter */
+.team .bullets{margin:.2rem 0 0 1.1rem; color:var(--muted); font-size:.95rem}
+.team .bullets li{margin:.15rem 0}
+
+/* Mobile nudge (optional) */
+@media (max-width: 680px){
+  .person img{flex-basis:96px; width:96px; height:96px;}
+}
 
 .contact-form, .quote-form{display:grid; gap:1rem}
 .contact-form .row, .quote-form .row{display:grid; grid-template-columns:1fr 1fr; gap:1rem}
