@@ -1,6 +1,6 @@
 // Helpers
-const $ = (s, r=document)=>r.querySelector(s);
-const $$ = (s, r=document)=>Array.from(r.querySelectorAll(s));
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 
 // Theme toggle
 const root = document.documentElement;
@@ -18,44 +18,14 @@ themeBtn?.addEventListener("click", () => {
 const navToggle = $(".nav-toggle");
 const navList = $("#nav-list");
 navToggle?.addEventListener("click", () => {
-  const exp = navToggle.getAttribute("aria-expanded")==="true";
+  const exp = navToggle.getAttribute("aria-expanded") === "true";
   navToggle.setAttribute("aria-expanded", (!exp).toString());
   navList?.classList.toggle("show");
 });
 
-// ===============================
-// Quote Modal (clean + unified)
-// ===============================
-const quoteModal = $("#quoteModal");
-const serviceInput = $("#selectedService");
-const modalTitle = $("#quoteModal h2");
-
-$$("[data-open-quote]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const plan = btn.dataset.plan || "Custom Service";
-    if(serviceInput) serviceInput.value = plan;
-    if(modalTitle) modalTitle.textContent = `Request a Quote — ${plan}`;
-    quoteModal?.classList.add("show");
-  });
-});
-
-// Close buttons
-$$("[data-close], .modal-close").forEach(el => {
-  el.addEventListener("click", () => {
-    quoteModal?.classList.remove("show");
-  });
-});
-
-// Optional: close when clicking outside modal
-quoteModal?.addEventListener("click", e => {
-  if (e.target === quoteModal) {
-    quoteModal.classList.remove("show");
-  }
-});
-
-// ===============================
-// Lightbox
-// ===============================
+// -----------------------------
+// Lightbox (unchanged)
+// -----------------------------
 $$('[data-lightbox]').forEach(a => {
   a.addEventListener('click', (e) => {
     e.preventDefault();
@@ -72,10 +42,10 @@ $$('[data-lightbox]').forEach(a => {
   });
 });
 
-// ===============================
-// Region + currency + phone
-// ===============================
-async function fetchGeo() {
+// -----------------------------
+// Region & currency helpers
+// -----------------------------
+async function fetchGeo(){
   try{
     const r = await fetch('https://ipapi.co/json').then(r=>r.json());
     return { country: (r.country || 'KE').toUpperCase(), currency: r.currency || null };
@@ -107,43 +77,62 @@ async function getRegionAndCurrency(){
   return { country, currency };
 }
 
-// Convert prices (KES -> local currency, show KES hint)
+// Convert KES prices shown on page to local currency
 async function convertPrices(){
   const { currency } = await getRegionAndCurrency();
   const els = $$('[data-pricing] [data-price-kes]');
-  if(els.length===0) return;
+  if(els.length === 0) return;
+
   try{
     const res = await fetch('https://api.exchangerate.host/latest?base=KES');
     const data = await res.json();
     const rate = data.rates?.[currency] || 1;
+
     els.forEach(card => {
-      const kes = parseFloat(card.getAttribute('data-price-kes'));
+      const kes = parseFloat(card.getAttribute('data-price-kes')) || 0;
       const local = kes * rate;
       const priceEl = card.querySelector('[data-price]');
       const hintEl = card.querySelector('[data-price-hint]');
-      if(priceEl) priceEl.textContent = new Intl.NumberFormat(undefined, {style:'currency', currency}).format(local);
+
+      if(priceEl) priceEl.textContent = new Intl.NumberFormat(undefined, { style:'currency', currency }).format(local);
       if(hintEl) {
-        hintEl.textContent = 'KES ' + new Intl.NumberFormat('en-KE', {style:'currency', currency:'KES', maximumFractionDigits:0}).format(kes).replace('KES','').trim();
+        hintEl.textContent = 'KES ' + new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES', maximumFractionDigits:0 }).format(kes).replace('KES','').trim();
       } else if(priceEl){
         const span = document.createElement('div');
         span.className = 'muted tiny';
         span.setAttribute('data-price-hint','');
-        span.textContent = 'KES ' + new Intl.NumberFormat('en-KE', {style:'currency', currency:'KES', maximumFractionDigits:0}).format(kes).replace('KES','').trim();
+        span.textContent = 'KES ' + new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES', maximumFractionDigits:0 }).format(kes).replace('KES','').trim();
         priceEl.insertAdjacentElement('afterend', span);
       }
     });
   }catch(e){
+    // fallback to KES only
     els.forEach(card => {
-      const kes = parseFloat(card.getAttribute('data-price-kes'));
+      const kes = parseFloat(card.getAttribute('data-price-kes')) || 0;
       const priceEl = card.querySelector('[data-price]');
       if(priceEl) priceEl.textContent = new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES' }).format(kes);
     });
   }
 }
 
-// ===============================
+// Helper to convert KES -> local currency and format text
+async function formatLocalPriceFromKES(kesAmount){
+  try{
+    const { currency } = await getRegionAndCurrency();
+    const res = await fetch('https://api.exchangerate.host/latest?base=KES&symbols=' + currency);
+    const data = await res.json();
+    const rate = data.rates?.[currency] || 1;
+    const local = kesAmount * rate;
+    const formattedLocal = new Intl.NumberFormat(undefined, { style:'currency', currency }).format(local);
+    return { formattedLocal, currency };
+  }catch(e){
+    return { formattedLocal: null, currency: null };
+  }
+}
+
+// -----------------------------
 // Phone input setup
-// ===============================
+// -----------------------------
 const PHONE_PLACEHOLDER = {
   KE:'+254 7xx xxx xxx', US:'+1 (xxx) xxx-xxxx', GB:'+44 xxxx xxxxxx', NG:'+234 xxx xxx xxxx',
   ZA:'+27 xx xxx xxxx', CA:'+1 (xxx) xxx-xxxx', AU:'+61 x xxxx xxxx', NZ:'+64 xx xxx xxxx',
@@ -158,11 +147,13 @@ function initPhoneInputs(){
       if(tries > 30) return;
       return setTimeout(doInit, 200);
     }
+
     window.intlTelInputGlobals.loadUtils('https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/js/utils.js');
     const preferred = ['ke','ug','tz','ng','za','us','gb'];
 
     document.querySelectorAll('input[type="tel"]').forEach(function(input){
       if(input.dataset.iti) return;
+
       const iti = window.intlTelInput(input, {
         initialCountry: 'auto',
         separateDialCode: true,
@@ -178,7 +169,9 @@ function initPhoneInputs(){
         },
         utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/js/utils.js',
       });
+
       input.dataset.iti = true;
+
       setTimeout(() => {
         const country = (iti.getSelectedCountryData && iti.getSelectedCountryData().iso2) || 'ke';
         input.placeholder = PHONE_PLACEHOLDER[country.toUpperCase()] || PHONE_PLACEHOLDER['KE'];
@@ -188,8 +181,91 @@ function initPhoneInputs(){
   doInit();
 }
 
-// ===============================
+// -----------------------------
+// Modal logic (unified, mirrors corporate-package form look)
+// -----------------------------
+(function initQuoteModal(){
+  const quoteModal = $("#quoteModal");
+  const priceNote = $("#modalPriceNote");
+  const selectedService = $("#selectedService");
+  const selectedPrice = $("#selectedPrice");
+  const form = $("#quoteForm");
+  const nameInput = $("#q_name");
+
+  // open handler
+  $$("[data-open-quote]").forEach(btn => {
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const plan = btn.dataset.plan || "Custom Service";
+      const card = btn.closest(".price-card");
+      const kes = parseFloat(card?.getAttribute("data-price-kes") || 0);
+
+      if(selectedService) selectedService.value = plan;
+      if(selectedPrice) selectedPrice.value = kes;
+
+      if($("#modalServiceTitle")) $("#modalServiceTitle").textContent = `Request a Quote — ${plan}`;
+      if(priceNote){
+        priceNote.textContent = `Estimated price: KES ${new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES', maximumFractionDigits:0 }).format(kes).replace('KES','').trim()}`;
+        const { formattedLocal } = await formatLocalPriceFromKES(kes);
+        if(formattedLocal){
+          priceNote.textContent = `Estimated price: ${formattedLocal} — KES ${new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES', maximumFractionDigits:0 }).format(kes).replace('KES','').trim()}`;
+        }
+      }
+
+      // ensure phone input inside modal is initialized
+      initPhoneInputs();
+
+      // show
+      quoteModal?.classList.add("show");
+      quoteModal?.setAttribute("open","");
+      setTimeout(()=> nameInput?.focus(), 200);
+    });
+  });
+
+  // close handlers
+  $$("[data-close], .modal-close").forEach(el=>{
+    el.addEventListener("click", (evt)=>{
+      evt.preventDefault();
+      quoteModal?.classList.remove("show");
+      quoteModal?.removeAttribute("open");
+    });
+  });
+
+  // click backdrop to close
+  quoteModal?.addEventListener("click", e=>{
+    if(e.target === quoteModal || e.target.classList.contains('modal-backdrop')){
+      quoteModal.classList.remove("show");
+      quoteModal.removeAttribute("open");
+    }
+  });
+
+  // esc to close
+  document.addEventListener("keydown", e=>{
+    if(e.key === "Escape" && quoteModal?.classList.contains("show")){
+      quoteModal.classList.remove("show");
+      quoteModal?.removeAttribute("open");
+    }
+  });
+
+  // Optional: intercept form submit to add small client-side validation (keeps using FormSubmit)
+  form?.addEventListener("submit", (ev)=>{
+    // ensure required fields are not empty
+    const email = form.querySelector('input[name="email"]')?.value || "";
+    const name = form.querySelector('input[name="name"]')?.value || "";
+    if(!name || !email){
+      ev.preventDefault();
+      alert("Please provide your name and email before sending the request.");
+      (form.querySelector('input[name="name"]') || form.querySelector('input[name="email"]'))?.focus();
+      return false;
+    }
+    // form will submit to FormSubmit (no further JS needed)
+    return true;
+  });
+
+})();
+
+// -----------------------------
 // Init on page load
-// ===============================
+// -----------------------------
 convertPrices();
 initPhoneInputs();
