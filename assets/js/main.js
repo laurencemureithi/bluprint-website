@@ -136,36 +136,48 @@ const PHONE_PLACEHOLDER = {
   IN:'+91 xxxxx xxxxx', JP:'+81 xx xxxx xxxx', DE:'+49 xxxx xxxxxx', FR:'+33 x xx xx xx xx'
 };
 
-async function initPhoneInputs(){
-  // Wait up to a short time for intlTelInput to be available (defer script helps)
-  let tries=0;
+// ---------- Replace existing initPhoneInputs() with this ----------
+function initPhoneInputs(){
+  // if intlTelInput not loaded yet, wait a bit
+  let tries = 0;
   function doInit(){
-    if(!window.intlTelInput) {
+    if(!window.intlTelInput){
       tries++;
-      if(tries>30) return;
+      if(tries > 30) return;
       return setTimeout(doInit, 200);
     }
-    // geo lookup for intl-tel-input
-    window.intlTelInputGlobals.loadUtils('https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/js/utils.js'); // ensure utils loaded
 
-    // preferred countries: put Kenya first
+    window.intlTelInputGlobals.loadUtils('https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/js/utils.js');
+
     const preferred = ['ke','ug','tz','ng','za','us','gb'];
 
     document.querySelectorAll('input[type="tel"]').forEach(function(input){
       if(input.dataset.iti) return;
+
       const iti = window.intlTelInput(input, {
         initialCountry: 'auto',
         separateDialCode: true,
         preferredCountries: preferred,
         geoIpLookup: function(success, failure){
-          fetch('https://ipapi.co/json').then(r=>r.json()).then(d=> success((d.country_code || 'KE').toLowerCase())).catch(()=> success('ke'));
+          // reliable geo lookup - call success with lower-case ISO2 code
+          fetch('https://ipapi.co/json')
+            .then(r => r.json())
+            .then(data => {
+              const code = (data && data.country_code) ? data.country_code.toLowerCase() : 'ke';
+              success(code);
+            })
+            .catch(() => success('ke')); // fallback to Kenya
         },
         utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/js/utils.js',
       });
+
       input.dataset.iti = true;
-      // set placeholder according to resolved country
-      const country = itmGetCountryCodeFromElement(input);
-      input.placeholder = PHONE_PLACEHOLDER[country] || PHONE_PLACEHOLDER['KE'];
+
+      // apply placeholder mapping (PHONE_PLACEHOLDER object is already in your file)
+      setTimeout(() => {
+        const country = (iti.getSelectedCountryData && iti.getSelectedCountryData().iso2) || 'ke';
+        input.placeholder = PHONE_PLACEHOLDER[country.toUpperCase()] || PHONE_PLACEHOLDER['KE'];
+      }, 300);
     });
   }
 
