@@ -274,43 +274,43 @@
 <div id="quoteModal" class="modal" aria-hidden="true" role="dialog">
   <div class="modal-backdrop" data-close></div>
 
-  <!-- modal-content uses price-card styling so it matches corporate cards -->
-  <div class="modal-content price-card" role="document" aria-labelledby="modalServiceTitle">
-    <button class="modal-close" data-close aria-label="Close">✕</button>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content price-card" aria-labelledby="modalServiceTitle">
+      <button class="modal-close" data-close aria-label="Close">✕</button>
 
-    <h2 id="modalServiceTitle">Request a Quote</h2>
-    <p class="muted note" id="modalPriceNote">Estimated price: —</p>
+      <h2 id="modalServiceTitle">Request a Quote</h2>
+      <p class="muted note" id="modalPriceNote">Estimated price: —</p>
 
-    <form id="quoteForm" class="quote-form" action="https://formsubmit.co/your@email.com" method="POST">
-      <input type="hidden" name="_next" value="./thank-you.html">
-      <input type="hidden" name="_subject" value="Service Request — Bluprint">
-      <!-- values filled by JS -->
-      <input type="hidden" id="selectedService" name="service" value="">
-      <input type="hidden" id="selectedPrice" name="price_kes" value="">
+      <form id="quoteForm" class="quote-form" action="https://formsubmit.co/your@email.com" method="POST">
+        <input type="hidden" name="_next" value="./thank-you.html">
+        <input type="hidden" name="_subject" value="Service Request — Bluprint">
+        <input type="hidden" id="selectedService" name="service" value="">
+        <input type="hidden" id="selectedPrice" name="price_kes" value="">
 
-      <label for="q_name">Your name</label>
-      <input id="q_name" name="name" type="text" required />
+        <label for="q_name">Your name</label>
+        <input id="q_name" name="name" type="text" required />
 
-      <label for="q_company">Company (optional)</label>
-      <input id="q_company" name="company" type="text" />
+        <label for="q_company">Company (optional)</label>
+        <input id="q_company" name="company" type="text" />
 
-      <label for="q_email">Email</label>
-      <input id="q_email" name="email" type="email" required />
+        <label for="q_email">Email</label>
+        <input id="q_email" name="email" type="email" required />
 
-      <label for="q_phone">Phone</label>
-      <input id="q_phone" name="phone" type="tel" />
+        <label for="q_phone">Phone</label>
+        <input id="q_phone" name="phone" type="tel" />
 
-      <label for="q_start">Preferred start date (optional)</label>
-      <input id="q_start" name="start_date" type="date" />
+        <label for="q_start">Preferred start date (optional)</label>
+        <input id="q_start" name="start_date" type="date" />
 
-      <label for="q_message">Project brief / details</label>
-      <textarea id="q_message" name="message" rows="5" placeholder="Tell us the brief, deadline, references..."></textarea>
+        <label for="q_message">Project brief / details</label>
+        <textarea id="q_message" name="message" rows="5" placeholder="Tell us the brief, deadline, references..."></textarea>
 
-      <div style="display:flex;gap:.5rem;align-items:center;margin-top:1rem;">
-        <button type="submit" class="btn btn--primary">Send request</button>
-        <button type="button" class="btn btn--ghost" data-close>Cancel</button>
-      </div>
-    </form>
+        <div style="display:flex;gap:.5rem;align-items:center;margin-top:1rem;">
+          <button type="submit" class="btn btn--primary">Send request</button>
+          <button type="button" class="btn btn--ghost" data-close>Cancel</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
