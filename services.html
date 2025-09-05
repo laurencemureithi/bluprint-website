@@ -270,6 +270,31 @@
 <style>.wa-float{position:fixed;right:18px;bottom:18px;z-index:9999}.wa-btn{display:inline-block;background:#25D366;color:#fff;border-radius:50%;width:56px;height:56px;box-shadow:0 6px 18px rgba(0,0,0,.25);text-align:center;line-height:56px;font-size:26px}</style>
 <a class="wa-float" href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><span class="wa-btn">💬</span></a>
 
+<div id="quoteModal" class="modal" hidden>
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <h2>Request a Quote</h2>
+    <form class="quote-form" action="https://formsubmit.co/your@email.com" method="POST">
+      <input type="hidden" name="_next" value="./thank-you.html">
+      <input type="hidden" name="_subject" value="Service Request — Bluprint">
+      <input type="hidden" id="selectedService" name="service" value="">
+
+      <label>Name</label>
+      <input type="text" name="name" required>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Phone</label>
+      <input type="tel" name="phone">
+
+      <label>Additional Details</label>
+      <textarea name="message" rows="4"></textarea>
+
+      <button type="submit" class="btn btn--primary">Send Request</button>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>
