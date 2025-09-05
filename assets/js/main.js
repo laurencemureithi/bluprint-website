@@ -192,3 +192,23 @@ function itmGetCountryCodeFromElement(input){
 // run conversions and phone init at load
 convertPrices();
 initPhoneInputs();
+
+document.querySelectorAll("[data-open-quote]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const plan = btn.getAttribute("data-plan");
+    document.querySelector("#selectedService").value = plan;
+    document.querySelector("#quoteModal h2").textContent = `Request a Quote — ${plan}`;
+    document.getElementById("quoteModal").hidden = false;
+  });
+});
+
+document.querySelector(".modal-close").addEventListener("click", () => {
+  document.getElementById("quoteModal").hidden = true;
+});
+
+window.addEventListener("click", e => {
+  if (e.target.id === "quoteModal") {
+    document.getElementById("quoteModal").hidden = true;
+  }
+});
+
