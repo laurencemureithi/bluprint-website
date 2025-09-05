@@ -235,7 +235,7 @@ a{color:inherit}
 .modal-dialog {
   position: relative;
   z-index: 10001;
-  max-width: 720px;   /* slightly wider for 2-column forms */
+  max-width: 720px;   /* fits 2-column forms */
   width: 100%;
   margin: 0 1rem;
 }
@@ -262,7 +262,7 @@ a{color:inherit}
   color: var(--muted);
 }
 
-/* Form grid layout */
+/* Quote form grid */
 .quote-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -287,20 +287,20 @@ a{color:inherit}
   font: inherit;
 }
 
-/* Make textarea span both columns */
+/* Textarea spans both columns */
 .quote-form textarea {
   grid-column: span 2;
   resize: vertical;
   min-height: 120px;
 }
 
-/* Submit button full width */
+/* Buttons full width row */
 .quote-form button {
   grid-column: span 2;
   justify-self: center;
 }
 
-/* Mobile: collapse to single column */
+/* Mobile: single column */
 @media (max-width: 640px) {
   .quote-form {
     grid-template-columns: 1fr;
@@ -310,3 +310,4 @@ a{color:inherit}
     grid-column: span 1;
   }
 }
+
