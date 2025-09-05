@@ -271,43 +271,52 @@
 <a class="wa-float" href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><span class="wa-btn">💬</span></a>
 
 <!-- REPLACE existing modal block in services.html with this -->
-<div id="quoteModal" class="modal" aria-hidden="true" role="dialog">
+<!-- Quote Modal -->
+<div id="quoteModal" class="modal" hidden>
   <div class="modal-backdrop" data-close></div>
-
-  <div class="modal-dialog" role="document">
-    <div class="modal-content price-card" aria-labelledby="modalServiceTitle">
+  <div class="modal-dialog">
+    <div class="modal-content">
       <button class="modal-close" data-close aria-label="Close">✕</button>
+      <h2 id="modalTitle">Request a Quote</h2>
 
-      <h2 id="modalServiceTitle">Request a Quote</h2>
-      <p class="muted note" id="modalPriceNote">Estimated price: —</p>
-
-      <form id="quoteForm" class="quote-form" action="https://formsubmit.co/your@email.com" method="POST">
+      <form class="quote-form" action="https://formsubmit.co/your@email.com" method="POST">
         <input type="hidden" name="_next" value="./thank-you.html">
         <input type="hidden" name="_subject" value="Service Request — Bluprint">
         <input type="hidden" id="selectedService" name="service" value="">
-        <input type="hidden" id="selectedPrice" name="price_kes" value="">
 
-        <label for="q_name">Your name</label>
-        <input id="q_name" name="name" type="text" required />
+        <!-- Row 1: Name & Email -->
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
 
-        <label for="q_company">Company (optional)</label>
-        <input id="q_company" name="company" type="text" />
+        <!-- Row 2: Phone & Package -->
+        <div>
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div>
+          <label for="package">Package</label>
+          <select id="package" name="package">
+            <option value="Standard">Standard</option>
+            <option value="Premium">Premium</option>
+            <option value="Custom">Custom</option>
+          </select>
+        </div>
 
-        <label for="q_email">Email</label>
-        <input id="q_email" name="email" type="email" required />
+        <!-- Row 3: Message -->
+        <div style="grid-column: span 2;">
+          <label for="message">Additional Details</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </div>
 
-        <label for="q_phone">Phone</label>
-        <input id="q_phone" name="phone" type="tel" />
-
-        <label for="q_start">Preferred start date (optional)</label>
-        <input id="q_start" name="start_date" type="date" />
-
-        <label for="q_message">Project brief / details</label>
-        <textarea id="q_message" name="message" rows="5" placeholder="Tell us the brief, deadline, references..."></textarea>
-
-        <div style="display:flex;gap:.5rem;align-items:center;margin-top:1rem;">
-          <button type="submit" class="btn btn--primary">Send request</button>
-          <button type="button" class="btn btn--ghost" data-close>Cancel</button>
+        <!-- Row 4: Submit -->
+        <div style="grid-column: span 2; text-align:center;">
+          <button type="submit" class="btn btn--primary">Send Request</button>
         </div>
       </form>
     </div>
