@@ -1,8 +1,12 @@
+// -----------------------------
 // Helpers
+// -----------------------------
 const $ = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 
+// -----------------------------
 // Theme toggle
+// -----------------------------
 const root = document.documentElement;
 const themeBtn = $("#themeToggle");
 const savedTheme = localStorage.getItem("theme");
@@ -14,7 +18,9 @@ themeBtn?.addEventListener("click", () => {
   localStorage.setItem("theme", next);
 });
 
+// -----------------------------
 // Mobile nav
+// -----------------------------
 const navToggle = $(".nav-toggle");
 const navList = $("#nav-list");
 navToggle?.addEventListener("click", () => {
@@ -24,7 +30,7 @@ navToggle?.addEventListener("click", () => {
 });
 
 // -----------------------------
-// Lightbox (unchanged)
+// Lightbox
 // -----------------------------
 $$('[data-lightbox]').forEach(a => {
   a.addEventListener('click', (e) => {
@@ -115,7 +121,7 @@ async function convertPrices(){
   }
 }
 
-// Helper to convert KES -> local currency and format text
+// Helper for formatting
 async function formatLocalPriceFromKES(kesAmount){
   try{
     const { currency } = await getRegionAndCurrency();
@@ -182,17 +188,18 @@ function initPhoneInputs(){
 }
 
 // -----------------------------
-// Modal logic (unified, mirrors corporate-package form look)
+// Creative Services modal (separate from corporate)
 // -----------------------------
-(function initQuoteModal(){
-  const quoteModal = $("#quoteModal");
+(function initCreativeModal(){
+  const modal = $("#quoteModal");
+  if(!modal) return;
+
   const priceNote = $("#modalPriceNote");
   const selectedService = $("#selectedService");
   const selectedPrice = $("#selectedPrice");
   const form = $("#quoteForm");
   const nameInput = $("#q_name");
 
-  // open handler
   $$("[data-open-quote]").forEach(btn => {
     btn.addEventListener("click", async (e) => {
       e.preventDefault();
@@ -205,63 +212,52 @@ function initPhoneInputs(){
 
       if($("#modalServiceTitle")) $("#modalServiceTitle").textContent = `Request a Quote — ${plan}`;
       if(priceNote){
-        priceNote.textContent = `Estimated price: KES ${new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES', maximumFractionDigits:0 }).format(kes).replace('KES','').trim()}`;
+        priceNote.textContent = `Estimated price: KES ${kes}`;
         const { formattedLocal } = await formatLocalPriceFromKES(kes);
         if(formattedLocal){
-          priceNote.textContent = `Estimated price: ${formattedLocal} — KES ${new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES', maximumFractionDigits:0 }).format(kes).replace('KES','').trim()}`;
+          priceNote.textContent = `Estimated price: ${formattedLocal} — KES ${kes}`;
         }
       }
 
-      // ensure phone input inside modal is initialized
       initPhoneInputs();
-
-      // show
-      quoteModal?.classList.add("show");
-      quoteModal?.setAttribute("open","");
+      modal.classList.add("show");
+      modal.setAttribute("open","");
       setTimeout(()=> nameInput?.focus(), 200);
     });
   });
 
-  // close handlers
   $$("[data-close], .modal-close").forEach(el=>{
     el.addEventListener("click", (evt)=>{
       evt.preventDefault();
-      quoteModal?.classList.remove("show");
-      quoteModal?.removeAttribute("open");
+      modal.classList.remove("show");
+      modal.removeAttribute("open");
     });
   });
 
-  // click backdrop to close
-  quoteModal?.addEventListener("click", e=>{
-    if(e.target === quoteModal || e.target.classList.contains('modal-backdrop')){
-      quoteModal.classList.remove("show");
-      quoteModal.removeAttribute("open");
+  modal?.addEventListener("click", e=>{
+    if(e.target === modal || e.target.classList.contains('modal-backdrop')){
+      modal.classList.remove("show");
+      modal.removeAttribute("open");
     }
   });
 
-  // esc to close
   document.addEventListener("keydown", e=>{
-    if(e.key === "Escape" && quoteModal?.classList.contains("show")){
-      quoteModal.classList.remove("show");
-      quoteModal?.removeAttribute("open");
+    if(e.key === "Escape" && modal?.classList.contains("show")){
+      modal.classList.remove("show");
+      modal.removeAttribute("open");
     }
   });
 
-  // Optional: intercept form submit to add small client-side validation (keeps using FormSubmit)
   form?.addEventListener("submit", (ev)=>{
-    // ensure required fields are not empty
     const email = form.querySelector('input[name="email"]')?.value || "";
     const name = form.querySelector('input[name="name"]')?.value || "";
     if(!name || !email){
       ev.preventDefault();
       alert("Please provide your name and email before sending the request.");
-      (form.querySelector('input[name="name"]') || form.querySelector('input[name="email"]'))?.focus();
       return false;
     }
-    // form will submit to FormSubmit (no further JS needed)
     return true;
   });
-
 })();
 
 // -----------------------------
