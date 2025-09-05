@@ -188,36 +188,51 @@ function initPhoneInputs(){
 }
 
 // -----------------------------
-// Creative Services modal (separate from corporate)
+// Corporate Packages modal (reuses #quoteModal from index.html)
 // -----------------------------
-(function initCreativeModal(){
+(function initCorporateModal(){
   const modal = $("#quoteModal");
   if(!modal) return;
 
-  const priceNote = $("#modalPriceNote");
-  const selectedService = $("#selectedService");
-  const selectedPrice = $("#selectedPrice");
-  const form = $("#quoteForm");
-  const nameInput = $("#q_name");
+  const form = modal.querySelector("form");
+  const nameInput = modal.querySelector("input[name='name']") || modal.querySelector("#phoneInput");
 
-  $$("[data-open-quote]").forEach(btn => {
-    btn.addEventListener("click", async (e) => {
+  $$("[data-open-corporate]").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      initPhoneInputs();
+      modal.classList.add("show");
+      modal.setAttribute("open","");
+      setTimeout(()=> nameInput?.focus(), 200);
+    });
+  });
+
+  // Close handlers
+  modal.querySelectorAll("[data-close], .modal-close").forEach(el=>{
+    el.addEventListener("click", ()=> {
+      modal.classList.remove("show");
+      modal.removeAttribute("open");
+    });
+  });
+})();
+
+// -----------------------------
+// Creative Services modal (new: #creativeModal)
+// -----------------------------
+(function initCreativeModal(){
+  const modal = $("#creativeModal");
+  if(!modal) return;
+
+  const selectedService = modal.querySelector("#selectedService");
+  const form = modal.querySelector("form");
+  const nameInput = modal.querySelector("input[name='name']");
+
+  $$("[data-open-creative]").forEach(btn => {
+    btn.addEventListener("click", e => {
       e.preventDefault();
       const plan = btn.dataset.plan || "Custom Service";
-      const card = btn.closest(".price-card");
-      const kes = parseFloat(card?.getAttribute("data-price-kes") || 0);
-
       if(selectedService) selectedService.value = plan;
-      if(selectedPrice) selectedPrice.value = kes;
-
-      if($("#modalServiceTitle")) $("#modalServiceTitle").textContent = `Request a Quote — ${plan}`;
-      if(priceNote){
-        priceNote.textContent = `Estimated price: KES ${kes}`;
-        const { formattedLocal } = await formatLocalPriceFromKES(kes);
-        if(formattedLocal){
-          priceNote.textContent = `Estimated price: ${formattedLocal} — KES ${kes}`;
-        }
-      }
+      if($("#modalServiceTitle")) $("#modalServiceTitle").textContent = `Request — ${plan}`;
 
       initPhoneInputs();
       modal.classList.add("show");
@@ -226,39 +241,15 @@ function initPhoneInputs(){
     });
   });
 
-  $$("[data-close], .modal-close").forEach(el=>{
-    el.addEventListener("click", (evt)=>{
-      evt.preventDefault();
+  // Close handlers
+  modal.querySelectorAll("[data-close], .modal-close").forEach(el=>{
+    el.addEventListener("click", ()=> {
       modal.classList.remove("show");
       modal.removeAttribute("open");
     });
   });
-
-  modal?.addEventListener("click", e=>{
-    if(e.target === modal || e.target.classList.contains('modal-backdrop')){
-      modal.classList.remove("show");
-      modal.removeAttribute("open");
-    }
-  });
-
-  document.addEventListener("keydown", e=>{
-    if(e.key === "Escape" && modal?.classList.contains("show")){
-      modal.classList.remove("show");
-      modal.removeAttribute("open");
-    }
-  });
-
-  form?.addEventListener("submit", (ev)=>{
-    const email = form.querySelector('input[name="email"]')?.value || "";
-    const name = form.querySelector('input[name="name"]')?.value || "";
-    if(!name || !email){
-      ev.preventDefault();
-      alert("Please provide your name and email before sending the request.");
-      return false;
-    }
-    return true;
-  });
 })();
+
 
 // -----------------------------
 // Init on page load
