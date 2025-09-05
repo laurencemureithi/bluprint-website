@@ -70,7 +70,7 @@
           </ul>
           <div class="price" data-price>—</div>
           <div class="muted tiny" data-price-hint></div>
-          <button class="btn btn--primary" data-open-creative data-plan="Logo Design">Request</button>
+          <button class="btn btn--primary" data-open-quote data-plan="Logo Design">Request</button>
         </article>
 
         <!-- Flyer & Poster -->
@@ -82,7 +82,7 @@
           </ul>
           <div class="price" data-price>—</div>
           <div class="muted tiny" data-price-hint></div>
-          <button class="btn btn--primary" data-open-creative data-plan="Flyer & Poster Design">Request</button>
+          <button class="btn btn--primary" data-open-quote data-plan="Flyer & Poster Design">Request</button>
         </article>
 
         <!-- Business cards -->
@@ -94,7 +94,7 @@
           </ul>
           <div class="price" data-price>—</div>
           <div class="muted tiny" data-price-hint></div>
-          <button class="btn btn--primary" data-open-creative data-plan="Business Card Design">Request</button>
+          <button class="btn btn--primary" data-open-quote data-plan="Business Card Design">Request</button>
         </article>
 
         <!-- Brand identity package -->
@@ -107,7 +107,7 @@
           </ul>
           <div class="price" data-price>—</div>
           <div class="muted tiny" data-price-hint></div>
-          <button class="btn btn--primary" data-open-creative data-plan="Brand Identity Package">Request</button>
+          <button class="btn btn--primary" data-open-quote data-plan="Brand Identity Package">Request</button>
         </article>
 
         <!-- Event invitations -->
@@ -119,7 +119,7 @@
           </ul>
           <div class="price" data-price>—</div>
           <div class="muted tiny" data-price-hint></div>
-          <button class="btn btn--primary" data-open-creative data-plan="Event Invitations">Request</button>
+          <button class="btn btn--primary" data-open-quote data-plan="Event Invitations">Request</button>
         </article>
 
         <!-- Stickers / labels -->
@@ -131,7 +131,7 @@
           </ul>
           <div class="price" data-price>—</div>
           <div class="muted tiny" data-price-hint></div>
-          <button class="btn btn--primary" data-open-creative data-plan="Sticker & Label Design">Request</button>
+          <button class="btn btn--primary" data-open-quote data-plan="Sticker & Label Design">Request</button>
         </article>
       </div>
     </div>
@@ -156,7 +156,7 @@
           </ul>
           <div class="price" data-price>—</div>
           <div class="muted tiny" data-price-hint></div>
-          <button class="btn btn--primary" data-open-corporate data-plan="Brand Sprint">Start</button>
+          <button class="btn btn--primary" data-open-quote data-plan="Brand Sprint">Start</button>
         </article>
 
         <article class="price-card" data-price-kes="100000">
@@ -169,7 +169,7 @@
           </ul>
           <div class="price" data-price>—</div>
           <div class="muted tiny" data-price-hint></div>
-          <button class="btn btn--primary" data-open-corporate data-plan="Campaign Kit">Enquire</button>
+          <button class="btn btn--primary" data-open-quote data-plan="Campaign Kit">Enquire</button>
         </article>
 
         <article class="price-card" data-price-kes="120000">
@@ -181,7 +181,7 @@
           </ul>
           <div class="price" data-price>—</div>
           <div class="muted tiny" data-price-hint></div>
-          <button class="btn btn--primary" data-open-corporate data-plan="Packaging Lab">Book</button>
+          <button class="btn btn--primary" data-open-quote data-plan="Packaging Lab">Book</button>
         </article>
       </div>
     </div>
@@ -270,56 +270,29 @@
 <style>.wa-float{position:fixed;right:18px;bottom:18px;z-index:9999}.wa-btn{display:inline-block;background:#25D366;color:#fff;border-radius:50%;width:56px;height:56px;box-shadow:0 6px 18px rgba(0,0,0,.25);text-align:center;line-height:56px;font-size:26px}</style>
 <a class="wa-float" href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><span class="wa-btn">💬</span></a>
 
-<!-- REPLACE existing modal block in services.html with this -->
-<!-- Quote Modal -->
 <div id="quoteModal" class="modal" hidden>
-  <div class="modal-backdrop" data-close></div>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <button class="modal-close" data-close aria-label="Close">✕</button>
-      <h2 id="modalTitle">Request a Quote</h2>
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <h2>Request a Quote</h2>
+    <form class="quote-form" action="https://formsubmit.co/your@email.com" method="POST">
+      <input type="hidden" name="_next" value="./thank-you.html">
+      <input type="hidden" name="_subject" value="Service Request — Bluprint">
+      <input type="hidden" id="selectedService" name="service" value="">
 
-      <form class="quote-form" action="https://formsubmit.co/your@email.com" method="POST">
-        <input type="hidden" name="_next" value="./thank-you.html">
-        <input type="hidden" name="_subject" value="Service Request — Bluprint">
-        <input type="hidden" id="selectedService" name="service" value="">
+      <label>Name</label>
+      <input type="text" name="name" required>
 
-        <!-- Row 1: Name & Email -->
-        <div>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
+      <label>Email</label>
+      <input type="email" name="email" required>
 
-        <!-- Row 2: Phone & Package -->
-        <div>
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone">
-        </div>
-        <div>
-          <label for="package">Package</label>
-          <select id="package" name="package">
-            <option value="Standard">Standard</option>
-            <option value="Premium">Premium</option>
-            <option value="Custom">Custom</option>
-          </select>
-        </div>
+      <label>Phone</label>
+      <input type="tel" name="phone">
 
-        <!-- Row 3: Message -->
-        <div style="grid-column: span 2;">
-          <label for="message">Additional Details</label>
-          <textarea id="message" name="message" rows="4"></textarea>
-        </div>
+      <label>Additional Details</label>
+      <textarea name="message" rows="4"></textarea>
 
-        <!-- Row 4: Submit -->
-        <div style="grid-column: span 2; text-align:center;">
-          <button type="submit" class="btn btn--primary">Send Request</button>
-        </div>
-      </form>
-    </div>
+      <button type="submit" class="btn btn--primary">Send Request</button>
+    </form>
   </div>
 </div>
 
