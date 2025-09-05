@@ -270,16 +270,27 @@
 <style>.wa-float{position:fixed;right:18px;bottom:18px;z-index:9999}.wa-btn{display:inline-block;background:#25D366;color:#fff;border-radius:50%;width:56px;height:56px;box-shadow:0 6px 18px rgba(0,0,0,.25);text-align:center;line-height:56px;font-size:26px}</style>
 <a class="wa-float" href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><span class="wa-btn">💬</span></a>
 
+<!-- REPLACE the old quoteModal block with this improved modal -->
 <div id="quoteModal" class="modal" hidden>
-  <div class="modal-content">
+  <div class="modal-backdrop" aria-hidden="true"></div>
+
+  <!-- modal-content uses same 'price-card' look so it matches site design -->
+  <div class="modal-content price-card" role="dialog" aria-modal="true" aria-labelledby="modalServiceTitle">
     <button class="modal-close" aria-label="Close">✕</button>
-    <h2>Request a Quote</h2>
-    <form class="quote-form" action="https://formsubmit.co/your@email.com" method="POST">
+
+    <h2 id="modalServiceTitle">Request a Quote</h2>
+
+    <!-- hidden fields: service and price (KES) -->
+    <form class="quote-form" action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
       <input type="hidden" name="_next" value="./thank-you.html">
       <input type="hidden" name="_subject" value="Service Request — Bluprint">
       <input type="hidden" id="selectedService" name="service" value="">
+      <input type="hidden" id="selectedPrice" name="price" value="">
 
-      <label>Name</label>
+      <!-- visible price note (local formatting will be filled by JS) -->
+      <p class="muted note" id="modalPriceNote" style="margin-bottom:1rem;">Estimated price: —</p>
+
+      <label>Your name</label>
       <input type="text" name="name" required>
 
       <label>Email</label>
@@ -288,10 +299,13 @@
       <label>Phone</label>
       <input type="tel" name="phone">
 
-      <label>Additional Details</label>
-      <textarea name="message" rows="4"></textarea>
+      <label>Details (brief)</label>
+      <textarea name="message" rows="4" placeholder="Tell us what you need (deadline, files, brand links...)"></textarea>
 
-      <button type="submit" class="btn btn--primary">Send Request</button>
+      <div style="display:flex; gap:.75rem; margin-top:1rem; align-items:center;">
+        <button type="submit" class="btn btn--primary">Confirm Request</button>
+        <button type="button" class="btn btn--ghost modal-close">Cancel</button>
+      </div>
     </form>
   </div>
 </div>
