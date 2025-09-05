@@ -23,21 +23,39 @@ navToggle?.addEventListener("click", () => {
   navList?.classList.toggle("show");
 });
 
-// Quote modal
+// ===============================
+// Quote Modal (clean + unified)
+// ===============================
 const quoteModal = $("#quoteModal");
+const serviceInput = $("#selectedService");
+const modalTitle = $("#quoteModal h2");
+
 $$("[data-open-quote]").forEach(btn => {
   btn.addEventListener("click", () => {
-    $("#serviceInput").value = btn.dataset.plan || "";
+    const plan = btn.dataset.plan || "Custom Service";
+    if(serviceInput) serviceInput.value = plan;
+    if(modalTitle) modalTitle.textContent = `Request a Quote — ${plan}`;
     quoteModal?.classList.add("show");
-    quoteModal?.setAttribute("open","");
   });
 });
-$$("[data-close]").forEach(el => el.addEventListener("click", () => {
-  quoteModal?.classList.remove("show");
-  quoteModal?.removeAttribute("open");
-}));
 
+// Close buttons
+$$("[data-close], .modal-close").forEach(el => {
+  el.addEventListener("click", () => {
+    quoteModal?.classList.remove("show");
+  });
+});
+
+// Optional: close when clicking outside modal
+quoteModal?.addEventListener("click", e => {
+  if (e.target === quoteModal) {
+    quoteModal.classList.remove("show");
+  }
+});
+
+// ===============================
 // Lightbox
+// ===============================
 $$('[data-lightbox]').forEach(a => {
   a.addEventListener('click', (e) => {
     e.preventDefault();
@@ -54,9 +72,10 @@ $$('[data-lightbox]').forEach(a => {
   });
 });
 
-// Region + currency + phone (unified)
+// ===============================
+// Region + currency + phone
+// ===============================
 async function fetchGeo() {
-  // Try geo-ip then fallback
   try{
     const r = await fetch('https://ipapi.co/json').then(r=>r.json());
     return { country: (r.country || 'KE').toUpperCase(), currency: r.currency || null };
@@ -65,7 +84,6 @@ async function fetchGeo() {
   }
 }
 
-// Country→currency map (fallback if geo doesn't return currency)
 const COUNTRY_TO_CURRENCY = {
   KE:'KES', US:'USD', GB:'GBP', NG:'NGN', ZA:'ZAR', CA:'CAD', EU:'EUR', FR:'EUR', DE:'EUR',
   IT:'EUR', ES:'EUR', PT:'EUR', NL:'EUR', BE:'EUR', AT:'EUR', IE:'EUR', FI:'EUR', SE:'SEK', NO:'NOK',
@@ -74,12 +92,10 @@ const COUNTRY_TO_CURRENCY = {
 };
 
 async function getRegionAndCurrency(){
-  // First try geo-ip
   const geo = await fetchGeo();
   let country = (geo && geo.country) ? geo.country : null;
   let currency = (geo && geo.currency) ? geo.currency : null;
 
-  // Fallback to navigator language if needed
   if(!country){
     const lang = navigator.language || 'en-KE';
     const m = lang.match(/[-_](\w\w)/);
@@ -91,13 +107,12 @@ async function getRegionAndCurrency(){
   return { country, currency };
 }
 
-// Convert prices (base KES) and populate both main currency and KES hint
+// Convert prices (KES -> local currency, show KES hint)
 async function convertPrices(){
-  const { country, currency } = await getRegionAndCurrency();
+  const { currency } = await getRegionAndCurrency();
   const els = $$('[data-pricing] [data-price-kes]');
   if(els.length===0) return;
   try{
-    // get rate from KES -> currency
     const res = await fetch('https://api.exchangerate.host/latest?base=KES');
     const data = await res.json();
     const rate = data.rates?.[currency] || 1;
@@ -106,12 +121,10 @@ async function convertPrices(){
       const local = kes * rate;
       const priceEl = card.querySelector('[data-price]');
       const hintEl = card.querySelector('[data-price-hint]');
-      // Show local currency as the primary price
       if(priceEl) priceEl.textContent = new Intl.NumberFormat(undefined, {style:'currency', currency}).format(local);
-      // Show KES as hint (so users in Kenya still see KES)
-      if(hintEl) hintEl.textContent = 'KES ' + new Intl.NumberFormat('en-KE', {style:'currency', currency:'KES', maximumFractionDigits:0}).format(kes).replace('KES','').trim();
-      // if no hintEl exists, create one
-      if(!hintEl && priceEl){
+      if(hintEl) {
+        hintEl.textContent = 'KES ' + new Intl.NumberFormat('en-KE', {style:'currency', currency:'KES', maximumFractionDigits:0}).format(kes).replace('KES','').trim();
+      } else if(priceEl){
         const span = document.createElement('div');
         span.className = 'muted tiny';
         span.setAttribute('data-price-hint','');
@@ -120,7 +133,6 @@ async function convertPrices(){
       }
     });
   }catch(e){
-    // fallback: show KES
     els.forEach(card => {
       const kes = parseFloat(card.getAttribute('data-price-kes'));
       const priceEl = card.querySelector('[data-price]');
@@ -129,16 +141,16 @@ async function convertPrices(){
   }
 }
 
-// Phone UI: placeholders & intl-tel-input init
+// ===============================
+// Phone input setup
+// ===============================
 const PHONE_PLACEHOLDER = {
   KE:'+254 7xx xxx xxx', US:'+1 (xxx) xxx-xxxx', GB:'+44 xxxx xxxxxx', NG:'+234 xxx xxx xxxx',
   ZA:'+27 xx xxx xxxx', CA:'+1 (xxx) xxx-xxxx', AU:'+61 x xxxx xxxx', NZ:'+64 xx xxx xxxx',
   IN:'+91 xxxxx xxxxx', JP:'+81 xx xxxx xxxx', DE:'+49 xxxx xxxxxx', FR:'+33 x xx xx xx xx'
 };
 
-// ---------- Replace existing initPhoneInputs() with this ----------
 function initPhoneInputs(){
-  // if intlTelInput not loaded yet, wait a bit
   let tries = 0;
   function doInit(){
     if(!window.intlTelInput){
@@ -146,81 +158,38 @@ function initPhoneInputs(){
       if(tries > 30) return;
       return setTimeout(doInit, 200);
     }
-
     window.intlTelInputGlobals.loadUtils('https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/js/utils.js');
-
     const preferred = ['ke','ug','tz','ng','za','us','gb'];
 
     document.querySelectorAll('input[type="tel"]').forEach(function(input){
       if(input.dataset.iti) return;
-
       const iti = window.intlTelInput(input, {
         initialCountry: 'auto',
         separateDialCode: true,
         preferredCountries: preferred,
-        geoIpLookup: function(success, failure){
-          // reliable geo lookup - call success with lower-case ISO2 code
+        geoIpLookup: function(success){
           fetch('https://ipapi.co/json')
             .then(r => r.json())
             .then(data => {
               const code = (data && data.country_code) ? data.country_code.toLowerCase() : 'ke';
               success(code);
             })
-            .catch(() => success('ke')); // fallback to Kenya
+            .catch(() => success('ke'));
         },
         utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/js/utils.js',
       });
-
       input.dataset.iti = true;
-
-      // apply placeholder mapping (PHONE_PLACEHOLDER object is already in your file)
       setTimeout(() => {
         const country = (iti.getSelectedCountryData && iti.getSelectedCountryData().iso2) || 'ke';
         input.placeholder = PHONE_PLACEHOLDER[country.toUpperCase()] || PHONE_PLACEHOLDER['KE'];
       }, 300);
     });
   }
-
   doInit();
 }
 
-// helper to get 2-letter code used in PHONE_PLACEHOLDER (upper case)
-function itmGetCountryCodeFromElement(input){
-  try{
-    if(input && input.dataset && input.dataset.iti){
-      const iti = window.intlTelInputGlobals.getInstance && window.intlTelInputGlobals.getInstance(input);
-      if(iti){
-        const data = iti.getSelectedCountryData();
-        return (data && data.iso2) ? data.iso2.toUpperCase() : 'KE';
-      }
-    }
-  }catch(e){}
-  // fallback to geo
-  const lang = navigator.language || 'en-KE';
-  const m = lang.match(/[-_](\w\w)/);
-  return (m && m[1]) ? m[1].toUpperCase() : 'KE';
-}
-
-// run conversions and phone init at load
+// ===============================
+// Init on page load
+// ===============================
 convertPrices();
 initPhoneInputs();
-
-document.querySelectorAll("[data-open-quote]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const plan = btn.getAttribute("data-plan");
-    document.querySelector("#selectedService").value = plan;
-    document.querySelector("#quoteModal h2").textContent = `Request a Quote — ${plan}`;
-    document.getElementById("quoteModal").hidden = false;
-  });
-});
-
-document.querySelector(".modal-close").addEventListener("click", () => {
-  document.getElementById("quoteModal").hidden = true;
-});
-
-window.addEventListener("click", e => {
-  if (e.target.id === "quoteModal") {
-    document.getElementById("quoteModal").hidden = true;
-  }
-});
-
