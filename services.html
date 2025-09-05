@@ -270,41 +270,45 @@
 <style>.wa-float{position:fixed;right:18px;bottom:18px;z-index:9999}.wa-btn{display:inline-block;background:#25D366;color:#fff;border-radius:50%;width:56px;height:56px;box-shadow:0 6px 18px rgba(0,0,0,.25);text-align:center;line-height:56px;font-size:26px}</style>
 <a class="wa-float" href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><span class="wa-btn">💬</span></a>
 
-<!-- REPLACE the old quoteModal block with this improved modal -->
-<div id="quoteModal" class="modal" hidden>
-  <div class="modal-backdrop" aria-hidden="true"></div>
+<!-- REPLACE existing modal block in services.html with this -->
+<div id="quoteModal" class="modal" aria-hidden="true" role="dialog">
+  <div class="modal-backdrop" data-close></div>
 
-  <!-- modal-content uses same 'price-card' look so it matches site design -->
-  <div class="modal-content price-card" role="dialog" aria-modal="true" aria-labelledby="modalServiceTitle">
-    <button class="modal-close" aria-label="Close">✕</button>
+  <!-- modal-content uses price-card styling so it matches corporate cards -->
+  <div class="modal-content price-card" role="document" aria-labelledby="modalServiceTitle">
+    <button class="modal-close" data-close aria-label="Close">✕</button>
 
     <h2 id="modalServiceTitle">Request a Quote</h2>
+    <p class="muted note" id="modalPriceNote">Estimated price: —</p>
 
-    <!-- hidden fields: service and price (KES) -->
-    <form class="quote-form" action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
+    <form id="quoteForm" class="quote-form" action="https://formsubmit.co/your@email.com" method="POST">
       <input type="hidden" name="_next" value="./thank-you.html">
       <input type="hidden" name="_subject" value="Service Request — Bluprint">
+      <!-- values filled by JS -->
       <input type="hidden" id="selectedService" name="service" value="">
-      <input type="hidden" id="selectedPrice" name="price" value="">
+      <input type="hidden" id="selectedPrice" name="price_kes" value="">
 
-      <!-- visible price note (local formatting will be filled by JS) -->
-      <p class="muted note" id="modalPriceNote" style="margin-bottom:1rem;">Estimated price: —</p>
+      <label for="q_name">Your name</label>
+      <input id="q_name" name="name" type="text" required />
 
-      <label>Your name</label>
-      <input type="text" name="name" required>
+      <label for="q_company">Company (optional)</label>
+      <input id="q_company" name="company" type="text" />
 
-      <label>Email</label>
-      <input type="email" name="email" required>
+      <label for="q_email">Email</label>
+      <input id="q_email" name="email" type="email" required />
 
-      <label>Phone</label>
-      <input type="tel" name="phone">
+      <label for="q_phone">Phone</label>
+      <input id="q_phone" name="phone" type="tel" />
 
-      <label>Details (brief)</label>
-      <textarea name="message" rows="4" placeholder="Tell us what you need (deadline, files, brand links...)"></textarea>
+      <label for="q_start">Preferred start date (optional)</label>
+      <input id="q_start" name="start_date" type="date" />
 
-      <div style="display:flex; gap:.75rem; margin-top:1rem; align-items:center;">
-        <button type="submit" class="btn btn--primary">Confirm Request</button>
-        <button type="button" class="btn btn--ghost modal-close">Cancel</button>
+      <label for="q_message">Project brief / details</label>
+      <textarea id="q_message" name="message" rows="5" placeholder="Tell us the brief, deadline, references..."></textarea>
+
+      <div style="display:flex;gap:.5rem;align-items:center;margin-top:1rem;">
+        <button type="submit" class="btn btn--primary">Send request</button>
+        <button type="button" class="btn btn--ghost" data-close>Cancel</button>
       </div>
     </form>
   </div>
