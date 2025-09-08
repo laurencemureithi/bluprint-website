@@ -229,10 +229,7 @@ a{color:inherit}
   font-size: .95rem;
   color: var(--muted);
 
-  max-width: 1100px;   /* match your .container max width */
-  margin-left: auto;   /* center within page */
-  margin-right: auto;  /* center within page */
-  padding: 0 1rem;     /* match .container side padding */
+  justify-content: center;   /* center them in the same width as container */
 }
 
 .contact-links .contact-item {
