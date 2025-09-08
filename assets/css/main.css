@@ -266,3 +266,68 @@ a{color:inherit}
   border-radius: 4px;   /* slightly rounded */
 }
 
+/* --------------------------------- */
+/* Mobile-first polish (phones <640px) */
+/* --------------------------------- */
+@media (max-width: 640px) {
+  /* Hero section */
+  .hero-inner {
+    grid-template-columns: 1fr;  /* stack text and card */
+    gap: 1.25rem;
+    text-align: center;
+  }
+  .hero .btn {
+    width: 100%;  /* full-width buttons look better on phones */
+    justify-content: center;
+  }
+
+  /* Price grids → single column */
+  .price-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Work grid → single column */
+  .work-grid,
+  .gallery .work-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Method grid → 2 per row instead of 4 */
+  .method-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Footer */
+  .site-footer .grid-3 {
+    display: block;  /* stack columns */
+    padding: 1.5rem 1rem;
+  }
+  .site-footer h4 {
+    margin-top: 1.25rem;
+  }
+
+  /* Contact links — make them vertical */
+  .contact-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  /* Newsletter input full width */
+  .newsletter input[type="email"],
+  .newsletter button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  /* Team cards tighter */
+  .person {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .person img {
+    margin-bottom: 0.75rem;
+  }
+}
