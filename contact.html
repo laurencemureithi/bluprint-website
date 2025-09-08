@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bluprint Graphics & Printers — Premium Graphic Design Studio</title>
+<meta name="description" content="Bluprint Graphics & Printers — high-impact graphic design, brand identity, print & digital assets for ambitious teams."/>
+<link rel="icon" href="./assets/img/favicon.png" />
+<link rel="apple-touch-icon" href="./assets/img/favicon.png" />
+<link rel="manifest" href="./manifest.json" />
+<meta property="og:title" content="Bluprint Graphics & Printers" />
+<meta property="og:description" content="Premium graphic design studio — identities, campaigns, packaging, and print." />
+<meta property="og:image" content="./assets/img/og-default.jpg" />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./assets/css/main.css" />
+<script defer src="./assets/js/main.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/css/intlTelInput.css"/>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/js/intlTelInput.min.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="./index.html" aria-label="Bluprint home">
+      <svg class="logo" viewBox="0 0 32 32" role="img" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" /><stop offset="100%"/></linearGradient></defs><rect width="32" height="32" rx="8" /></svg>
+      <span class="brand-text">Bluprint</span>
+    </a>
+    <nav class="nav">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">☰</button>
+      <ul id="nav-list">
+        <li><a href="./work.html">Work</a></li>
+        <li><a href="./services.html">Services</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a class="btn btn--primary" href="./contact.html">Start a project</a></li>
+        <li><button id="themeToggle" class="btn btn--ghost" aria-label="Toggle theme">🌗</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Start a project</h1>
+      <p class="lede">Tell us a bit about your goals — we’ll reply within one business day.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+<form class="contact-form" action="https://formsubmit.co/" method="POST">
+  <input type="hidden" name="_next" value="./thank-you.html">
+  <div class="bluprint-form-row">
+    <div class="field">
+      <label>Your name
+        <input type="text" name="name" placeholder="Your full name" required>
+      </label>
+    </div>
+    <div class="field">
+      <label>Company
+        <input type="text" name="company" placeholder="Company or brand">
+      </label>
+    </div>
+  </div>
+
+  <div class="bluprint-form-row" style="margin-top:8px;">
+    <div class="field">
+      <label>Email
+        <input type="email" name="email" placeholder="you@company.com">
+      </label>
+    </div>
+    <div class="field">
+      <label>Phone
+        <input id="phoneContact" type="tel" name="phone" placeholder="+254 7xx xxx xxx">
+      </label>
+    </div>
+  </div>
+
+  <label style="display:block; margin-top:8px;">What do you need?
+    <textarea name="message" placeholder="Logo, brand identity, packaging, campaign, print…"></textarea>
+  </label>
+
+  <div style="margin-top:10px; text-align:right;">
+    <button class="btn btn--primary" type="submit">Send</button>
+  </div>
+</form>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container grid-3">
+    <div>
+      <div class="brand-row">
+        <svg class="logo small" viewBox="0 0 32 32" role="img" aria-hidden="true"><rect width="32" height="32" rx="8" /></svg>
+        <strong>Bluprint Graphics &amp; Printers</strong>
+      </div>
+      <p class="muted">Premium design for print & digital. Nairobi • Remote across Africa</p>
+      <p class="muted"><small>Mon–Fri 9am–6pm EAT</small></p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul class="links">
+        <li><a href="./work.html">Work</a></li>
+        <li><a href="./services.html">Services & Pricing</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Newsletter</h4>
+      <form class="newsletter" action="https://formsubmit.co/" method="POST">
+        <input type="email" name="email" placeholder="you@company.com" required />
+        <input type="hidden" name="_subject" value="Newsletter signup — Bluprint"/>
+        <button class="btn btn--primary" type="submit">Subscribe</button>
+      </form>
+      <p class="muted tiny">By subscribing you agree to our <a href="#">privacy policy</a>.</p>
+    </div>
+  </div>
+  <div class="container footnote">
+    <small>© 2025 Bluprint Graphics &amp; Printers. All rights reserved.</small>
+    <small><a href="./privacy.html">Privacy</a> • <a href="./terms.html">Terms</a></small>
+  </div>
+<!-- Contact links with icons -->
+<div class="contact-links">
+  <a href="mailto:bluprintgraphicsandprinters@gmail.com" class="contact-item" aria-label="Email us">
+    <img src="./assets/img/email-icon.png" alt="Email" class="icon"> 
+    bluprintgraphicsandprinters@gmail.com
+  </a>
+  <a href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Chat on WhatsApp">
+    <img src="./assets/img/whatsapp-icon.png" alt="WhatsApp" class="icon"> 
+    +254 110 343 757
+  </a>
+  <a href="https://instagram.com/bluprint.ltd" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Instagram">
+    <img src="./assets/img/instagram-icon.png" alt="Instagram" class="icon"> 
+    @bluprint.ltd
+  </a>
+</div>
+
+</footer>
+
+<script>window.__PAGE__="contact";</script>
+
+<!-- WhatsApp floating button -->
+<style>
+.wa-float {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+}
+.wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #25D366;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+.wa-btn img {
+  width: 28px;
+  height: 28px;
+}
+</style>
+
+<a class="wa-float" href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <span class="wa-btn">
+    <img src="./assets/img/whatsapp-icon.png" alt="WhatsApp">
+  </span>
+</a>
+
+</body>
+</html>
