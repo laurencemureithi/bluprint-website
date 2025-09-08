@@ -228,7 +228,11 @@ a{color:inherit}
   gap: 1.5rem;
   font-size: .95rem;
   color: var(--muted);
-  justify-content: flex-start;  /* align with container left edge */
+
+  max-width: 1100px;   /* match your .container max width */
+  margin-left: auto;   /* center within page */
+  margin-right: auto;  /* center within page */
+  padding: 0 1rem;     /* match .container side padding */
 }
 
 .contact-links .contact-item {
