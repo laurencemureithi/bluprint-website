@@ -1,70 +1,107 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Terms — Bluprint</title>
+  <meta name="description" content="Terms and conditions for working with Bluprint Graphics & Printers."/>
+  <link rel="icon" href="./assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="./assets/img/favicon.png" />
+  <link rel="manifest" href="./manifest.json" />
   <link rel="stylesheet" href="./assets/css/main.css"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/css/intlTelInput.css"/>
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.6.0/build/js/intlTelInput.min.js" defer></script>
+  <script defer src="./assets/js/main.js"></script>
 </head>
 <body>
-  <main class="legal container">
-    <h1>Terms</h1>
-    <ul>
-      <li>50% deposit to start, balance on delivery.</li>
-      <li>Two concept rounds included unless otherwise agreed.</li>
-      <li>Deliverables defined per scope; out‑of‑scope work billed separately.</li>
-    </ul>
-  </main>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="./index.html" aria-label="Bluprint home">
+      <img src="./assets/img/BP-icon.jpg" alt="Bluprint Logo" class="logo-img header-logo"/>
+      <span class="brand-text">Bluprint</span>
+    </a>
+    <nav class="nav">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">☰</button>
+      <ul id="nav-list">
+        <li><a href="./work.html">Work</a></li>
+        <li><a href="./services.html">Services</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a class="btn btn--primary" href="./contact.html">Start a project</a></li>
+        <li><button id="themeToggle" class="btn btn--ghost" aria-label="Toggle theme">🌗</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Terms & Conditions</h1>
+      <p class="lede">Our commitment and expectations when working with Bluprint Graphics & Printers.</p>
+    </div>
+  </section>
+
+  <!-- Terms Content -->
+  <section class="legal">
+    <div class="container">
+      <ul>
+        <li>50% deposit to start, balance on delivery.</li>
+        <li>Two concept rounds included unless otherwise agreed.</li>
+        <li>Deliverables defined per scope; out-of-scope work billed separately.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container grid-3">
+    <div>
+      <div class="brand-row">
+        <img src="./assets/img/BP-icon.jpg" alt="Bluprint Logo" class="logo-img footer-logo"/>
+        <strong>Bluprint Graphics &amp; Printers</strong>
+      </div>
+      <p class="muted">Premium design for print & digital. Nairobi • Remote across Africa</p>
+      <p class="muted"><small>Mon–Fri 9am–6pm EAT</small></p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul class="links">
+        <li><a href="./work.html">Work</a></li>
+        <li><a href="./services.html">Services & Pricing</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <div class="contact-links">
+        <a href="mailto:bluprintgraphicsandprinters@gmail.com" class="contact-item" aria-label="Email us">
+          <img src="./assets/img/email-icon.png" alt="Email" class="icon"> 
+          bluprintgraphicsandprinters@gmail.com
+        </a>
+        <a href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Chat on WhatsApp">
+          <img src="./assets/img/whatsapp-icon.png" alt="WhatsApp" class="icon"> 
+          +254 110 343 757
+        </a>
+        <a href="https://instagram.com/bluprint.ltd" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Instagram">
+          <img src="./assets/img/instagram-icon.png" alt="Instagram" class="icon"> 
+          @bluprint.ltd
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container footnote">
+    <small>© 2025 Bluprint Graphics &amp; Printers. All rights reserved.</small>
+    <small><a href="./privacy.html">Privacy</a> • <a href="./terms.html">Terms</a></small>
+  </div>
+</footer>
 
 <!-- WhatsApp floating button -->
-<style>
-.wa-float {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 9999;
-}
-.wa-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #25D366;
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.25);
-}
-.wa-btn img {
-  width: 28px;
-  height: 28px;
-}
-</style>
-
 <a class="wa-float" href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
   <span class="wa-btn">
     <img src="./assets/img/whatsapp-icon.png" alt="WhatsApp">
   </span>
 </a>
 
+<script>window.__PAGE__="terms";</script>
 </body>
 </html>
-
-<footer>
-  <!-- Contact links with icons -->
-<div class="contact-links">
-  <a href="mailto:bluprintgraphicsandprinters@gmail.com" class="contact-item" aria-label="Email us">
-    <img src="./assets/img/email-icon.png" alt="Email" class="icon"> 
-    bluprintgraphicsandprinters@gmail.com
-  </a>
-  <a href="https://wa.me/254110343757" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Chat on WhatsApp">
-    <img src="./assets/img/whatsapp-icon.png" alt="WhatsApp" class="icon"> 
-    +254 110 343 757
-  </a>
-  <a href="https://instagram.com/bluprint.ltd" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Instagram">
-    <img src="./assets/img/instagram-icon.png" alt="Instagram" class="icon"> 
-    @bluprint.ltd
-  </a>
-</div>
-</footer>
