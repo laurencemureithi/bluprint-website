@@ -228,6 +228,7 @@ a{color:inherit}
   gap: 1.5rem;
   font-size: .95rem;
   color: var(--muted);
+  justify-content: flex-start;  /* align with container left edge */
 }
 
 .contact-links .contact-item {
