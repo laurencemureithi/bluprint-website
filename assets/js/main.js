@@ -203,40 +203,51 @@ function closeModal(modal){
 
 // -----------------------------
 // Unified Quote Modal (used in both index.html and services.html)
+// Replace your old '[data-open-quote]' handler with this block
 // -----------------------------
 (function initQuoteModal(){
   const modal = document.getElementById('quoteModal');
   if(!modal) return;
 
   const phoneInput = modal.querySelector('#phoneInput');
-  const serviceInput = modal.querySelector('#serviceInput');
+  const serviceInput = modal.querySelector('#serviceInput') || modal.querySelector('input[name="service"]');
   const budgetInput = modal.querySelector('#budgetInput');
   const budgetVal = modal.querySelector('#budgetVal');
 
-  // listen on all buttons with data-open-quote
   document.querySelectorAll('[data-open-quote]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', async (e) => {
       e.preventDefault();
 
-      const plan = btn.dataset.plan || '';
+      // prefer button price, fallback to nearest card's data-price-kes
+      const btnPrice = btn.dataset.priceKes ? parseFloat(btn.dataset.priceKes) : NaN;
       const card = btn.closest('.price-card');
-      const kes = parseFloat(card?.getAttribute('data-price-kes') || 0);
+      const cardPrice = card ? parseFloat(card.getAttribute('data-price-kes')) : NaN;
+      const kes = !isNaN(btnPrice) ? btnPrice : (!isNaN(cardPrice) ? cardPrice : 0);
 
-      if(serviceInput) serviceInput.value = plan;
-      if(budgetInput && !isNaN(kes)){
+      // Plan text (service + tier) from button
+      const planText = btn.dataset.plan || (card ? (card.querySelector('h3')?.textContent || '') : '');
+
+      // Fill modal fields if present
+      if(serviceInput) serviceInput.value = planText;
+      if(budgetInput && !isNaN(kes)) {
         budgetInput.value = kes;
         if(budgetVal) budgetVal.textContent = kes;
       }
 
-      initPhoneInputs();
+      // ensure phone input widget in modal is initialized (intl-tel-input)
+      try { initPhoneInputs(); } catch(e){ /* ignore */ }
+
+      // show modal
       modal.removeAttribute('hidden');
       modal.classList.add('show');
       modal.setAttribute('open','');
-      setTimeout(()=> phoneInput?.focus(), 200);
+
+      // focus best field
+      setTimeout(()=> (phoneInput || modal.querySelector('input[type="text"], input[type="email"], input[type="tel"]'))?.focus(), 180);
     });
   });
 
-  // close actions
+  // close handlers (preserve existing behaviour)
   modal.querySelectorAll('[data-close], .modal-close').forEach(el => {
     el.addEventListener('click', () => {
       modal.classList.remove('show');
@@ -261,7 +272,6 @@ function closeModal(modal){
     }
   });
 })();
-
 
 // Creative modal (separate for creative services)
 (function initCreativeModal(){
