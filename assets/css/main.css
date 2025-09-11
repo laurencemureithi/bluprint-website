@@ -346,3 +346,37 @@ a{color:inherit}
 .price-actions .btn + .btn { margin-left:0; }
 .price-card .muted.tiny[data-price-hint] { margin-top:6px; display:block; }
 
+/* Service Cards - cleaner than price-grid */
+.services-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: var(--panel);
+  border: 1px solid rgba(127,127,127,.18);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.service-card h3 {
+  margin-top: 0;
+}
+
+.service-card ul {
+  margin: 1rem 0;
+  padding-left: 1.2rem;
+}
+
+.service-card .muted {
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.service-card .price-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+
