@@ -325,6 +325,20 @@ document.addEventListener('submit', (ev) => {
   return true;
 });
 
+// Toggle "View Packages"
+document.addEventListener('click', (e) => {
+  if (e.target.matches('[data-toggle-packages]')) {
+    const card = e.target.closest('.service-card');
+    const list = card?.querySelector('.packages');
+    if (!list) return;
+
+    list.classList.toggle('show');
+    e.target.textContent = list.classList.contains('show')
+      ? 'Hide Packages'
+      : 'View Packages';
+  }
+});
+
 // Init on page load
 convertPrices();
 initPhoneInputs();
