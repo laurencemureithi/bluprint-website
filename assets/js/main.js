@@ -1,15 +1,25 @@
 // -----------------------------
-// Full main.js (overwrite your existing file with this)
+// Full main.js
 // - Handles theme, nav, lightbox, geo/currency, phone UI
-// - Robust modal handling for corporate (#quoteModal) and creative (#creativeModal)
-// - Supports legacy attr [data-open-quote] and new attrs [data-open-corporate] / [data-open-creative]
+// - Modal handling for corporate (#quoteModal) and creative (#creativeModal)
+// - Supports [data-open-quote], [data-open-corporate], [data-open-creative]
+// - Clean KES formatting ("From KES 15,000")
 // -----------------------------
 
+// -----------------------------
 // Helpers
+// -----------------------------
 const $ = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 
+// Format helper for KES
+function formatKES(value) {
+  return 'KES ' + Number(value).toLocaleString('en-KE');
+}
+
+// -----------------------------
 // Theme toggle
+// -----------------------------
 const root = document.documentElement;
 const themeBtn = $("#themeToggle");
 const savedTheme = localStorage.getItem("theme");
@@ -21,7 +31,9 @@ themeBtn?.addEventListener("click", () => {
   localStorage.setItem("theme", next);
 });
 
+// -----------------------------
 // Mobile nav
+// -----------------------------
 const navToggle = $(".nav-toggle");
 const navList = $("#nav-list");
 navToggle?.addEventListener("click", () => {
@@ -30,7 +42,9 @@ navToggle?.addEventListener("click", () => {
   navList?.classList.toggle("show");
 });
 
+// -----------------------------
 // Lightbox
+// -----------------------------
 $$('[data-lightbox]').forEach(a => {
   a.addEventListener('click', (e) => {
     e.preventDefault();
@@ -82,7 +96,7 @@ async function getRegionAndCurrency(){
   return { country, currency };
 }
 
-// Convert KES prices shown on page to local currency
+// Convert KES prices to local + show "From KES …"
 async function convertPrices(){
   const { currency } = await getRegionAndCurrency();
   const els = $$('[data-pricing] [data-price-kes]');
@@ -99,14 +113,22 @@ async function convertPrices(){
       const priceEl = card.querySelector('[data-price]');
       const hintEl = card.querySelector('[data-price-hint]');
 
-      if(priceEl) priceEl.textContent = new Intl.NumberFormat(undefined, { style:'currency', currency }).format(local);
-      if(hintEl) {
-        hintEl.textContent = 'KES ' + new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES', maximumFractionDigits:0 }).format(kes).replace('KES','').trim();
-      } else if(priceEl){
+      if (priceEl) {
+        // show converted local price (e.g. USD 120)
+        priceEl.textContent = new Intl.NumberFormat(undefined, {
+          style: 'currency',
+          currency
+        }).format(local);
+      }
+
+      const formattedKES = formatKES(kes);
+      if (hintEl) {
+        hintEl.textContent = 'From ' + formattedKES;
+      } else if (priceEl) {
         const span = document.createElement('div');
         span.className = 'muted tiny';
-        span.setAttribute('data-price-hint','');
-        span.textContent = 'KES ' + new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES', maximumFractionDigits:0 }).format(kes).replace('KES','').trim();
+        span.setAttribute('data-price-hint', '');
+        span.textContent = 'From ' + formattedKES;
         priceEl.insertAdjacentElement('afterend', span);
       }
     });
@@ -114,7 +136,7 @@ async function convertPrices(){
     els.forEach(card => {
       const kes = parseFloat(card.getAttribute('data-price-kes')) || 0;
       const priceEl = card.querySelector('[data-price]');
-      if(priceEl) priceEl.textContent = new Intl.NumberFormat('en-KE', { style:'currency', currency:'KES' }).format(kes);
+      if(priceEl) priceEl.textContent = formatKES(kes);
     });
   }
 }
@@ -202,8 +224,7 @@ function closeModal(modal){
 }
 
 // -----------------------------
-// Unified Quote Modal (used in both index.html and services.html)
-// Replace your old '[data-open-quote]' handler with this block
+// Unified Quote Modal
 // -----------------------------
 (function initQuoteModal(){
   const modal = document.getElementById('quoteModal');
@@ -218,72 +239,50 @@ function closeModal(modal){
     btn.addEventListener('click', async (e) => {
       e.preventDefault();
 
-      // prefer button price, fallback to nearest card's data-price-kes
       const btnPrice = btn.dataset.priceKes ? parseFloat(btn.dataset.priceKes) : NaN;
       const card = btn.closest('.price-card');
       const cardPrice = card ? parseFloat(card.getAttribute('data-price-kes')) : NaN;
       const kes = !isNaN(btnPrice) ? btnPrice : (!isNaN(cardPrice) ? cardPrice : 0);
 
-      // Plan text (service + tier) from button
       const planText = btn.dataset.plan || (card ? (card.querySelector('h3')?.textContent || '') : '');
 
-      // Fill modal fields if present
       if(serviceInput) serviceInput.value = planText;
       if(budgetInput && !isNaN(kes)) {
         budgetInput.value = kes;
         if(budgetVal) budgetVal.textContent = kes;
       }
 
-      // ensure phone input widget in modal is initialized (intl-tel-input)
-      try { initPhoneInputs(); } catch(e){ /* ignore */ }
+      try { initPhoneInputs(); } catch(e){}
 
-      // show modal
-      modal.removeAttribute('hidden');
-      modal.classList.add('show');
-      modal.setAttribute('open','');
-
-      // focus best field
+      openModal(modal);
       setTimeout(()=> (phoneInput || modal.querySelector('input[type="text"], input[type="email"], input[type="tel"]'))?.focus(), 180);
     });
   });
 
-  // close handlers (preserve existing behaviour)
   modal.querySelectorAll('[data-close], .modal-close').forEach(el => {
-    el.addEventListener('click', () => {
-      modal.classList.remove('show');
-      modal.removeAttribute('open');
-      modal.setAttribute('hidden','');
-    });
+    el.addEventListener('click', () => closeModal(modal));
   });
 
   modal.addEventListener('click', (e) => {
-    if(e.target.classList.contains('modal-backdrop')) {
-      modal.classList.remove('show');
-      modal.removeAttribute('open');
-      modal.setAttribute('hidden','');
-    }
+    if(e.target.classList.contains('modal-backdrop')) closeModal(modal);
   });
 
   document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape' && modal.classList.contains('show')) {
-      modal.classList.remove('show');
-      modal.removeAttribute('open');
-      modal.setAttribute('hidden','');
-    }
+    if(e.key === 'Escape' && modal.classList.contains('show')) closeModal(modal);
   });
 })();
 
-// Creative modal (separate for creative services)
+// -----------------------------
+// Creative modal
+// -----------------------------
 (function initCreativeModal(){
-  const creativeModal = document.getElementById('creativeModal'); // optional
-  const fallbackModal = document.getElementById('quoteModal'); // fallback to corporate modal if creative not present
+  const creativeModal = document.getElementById('creativeModal');
+  const fallbackModal = document.getElementById('quoteModal');
 
-  // listener for creative triggers (explicit)
   $$('[data-open-creative]').forEach(btn => {
     btn.addEventListener('click', async (e) => {
       e.preventDefault();
       const plan = btn.dataset.plan || '';
-      // if a dedicated creative modal exists, use that
       if(creativeModal){
         const sel = creativeModal.querySelector('#selectedService') || creativeModal.querySelector('input[name="service"]');
         if(sel && plan) sel.value = plan;
@@ -292,8 +291,6 @@ function closeModal(modal){
         setTimeout(()=> creativeModal.querySelector('input[type="text"], input[type="tel"], input[type="email"]')?.focus(), 200);
         return;
       }
-
-      // if no creative modal, fallback to corporate modal and prefill service
       if(fallbackModal){
         const serviceInput = fallbackModal.querySelector('#serviceInput') || fallbackModal.querySelector('input[name="service"]');
         if(serviceInput && plan) serviceInput.value = plan;
@@ -305,13 +302,12 @@ function closeModal(modal){
   });
 })();
 
-// global click to close any modal that uses data-close attributes - already handled per modal
-
-// Basic form validation interception for any quote form (optional)
+// -----------------------------
+// Basic form validation
+// -----------------------------
 document.addEventListener('submit', (ev) => {
   const form = ev.target;
   if(!form.classList.contains('quote-form')) return;
-  // require at least name or phone or email (depending on modal structure)
   const name = form.querySelector('input[name="name"]')?.value?.trim();
   const email = form.querySelector('input[name="email"]')?.value?.trim();
   const phone = form.querySelector('input[name="phone"]')?.value?.trim();
@@ -321,11 +317,12 @@ document.addEventListener('submit', (ev) => {
     form.querySelector('input[name="name"], input[name="email"], input[name="phone"]')?.focus();
     return false;
   }
-  // allow regular submission (e.g., to FormSubmit)
   return true;
 });
 
+// -----------------------------
 // Toggle "View Packages"
+// -----------------------------
 document.addEventListener('click', (e) => {
   if (e.target.matches('[data-toggle-packages]')) {
     const card = e.target.closest('.service-card');
@@ -339,6 +336,8 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// -----------------------------
 // Init on page load
+// -----------------------------
 convertPrices();
 initPhoneInputs();
