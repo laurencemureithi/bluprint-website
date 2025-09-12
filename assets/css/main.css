@@ -383,3 +383,22 @@ a{color:inherit}
   margin-top: 1rem;
   align-self: flex-start;
 }
+
+/* Collapsible package list */
+.packages {
+  margin: .75rem 0 0;
+  padding-left: 1.2rem;
+  display: none;           /* hidden by default */
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.packages.show {
+  display: block;          /* shown when toggled */
+}
+
+.price-actions {
+  display: flex;
+  gap: .5rem;
+  margin-top: .75rem;
+}
