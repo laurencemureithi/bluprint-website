@@ -52,7 +52,12 @@
   <section>
     <div class="container">
 <form class="contact-form" action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
+  <!-- Required hidden inputs -->
   <input type="hidden" name="_next" value="./thank-you.html">
+  <input type="hidden" name="_subject" value="New Contact Message — Bluprint">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+
   <div class="bluprint-form-row">
     <div class="field">
       <label>Your name
@@ -89,6 +94,7 @@
 </form>
     </div>
   </section>
+  
 </main>
 <footer class="site-footer">
   <div class="container grid-3">
@@ -111,11 +117,16 @@
     </div>
     <div>
       <h4>Newsletter</h4>
-      <form class="newsletter" action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
-        <input type="email" name="email" placeholder="you@company.com" required />
-        <input type="hidden" name="_subject" value="Newsletter signup — Bluprint"/>
-        <button class="btn btn--primary" type="submit">Subscribe</button>
-      </form>
+<form class="newsletter" action="https://formsubmit.co/bluprintgraphicsandprinters@gmail.com" method="POST">
+  <!-- Required hidden inputs -->
+  <input type="hidden" name="_next" value="./thank-you.html">
+  <input type="hidden" name="_subject" value="Newsletter signup — Bluprint">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+
+  <input type="email" name="email" placeholder="you@company.com" required />
+  <button class="btn btn--primary" type="submit">Subscribe</button>
+</form>
       <p class="muted tiny">By subscribing you agree to our <a href="#">privacy policy</a>.</p>
     </div>
   </div>
