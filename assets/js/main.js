@@ -247,10 +247,22 @@ function closeModal(modal){
       const planText = btn.dataset.plan || (card ? (card.querySelector('h3')?.textContent || '') : '');
 
       if(serviceInput) serviceInput.value = planText;
-      if(budgetInput && !isNaN(kes)) {
-        budgetInput.value = kes;
-        if(budgetVal) budgetVal.textContent = kes;
+      if (budgetInput) {
+      const min = btn.getAttribute("data-min");
+      const max = btn.getAttribute("data-max");
+
+      if (min && max) {
+      budgetInput.min = min;
+      budgetInput.max = max;
+      budgetInput.value = min;
+      if (budgetVal) budgetVal.textContent = min;
+      } else if (!isNaN(kes)) {
+      // fallback to price if min/max not defined
+      budgetInput.value = kes;
+      if (budgetVal) budgetVal.textContent = kes;
       }
+    }
+
 
       try { initPhoneInputs(); } catch(e){}
 
